@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://38d2me6c81hk"]
 
+[ext_resource type="Script" uid="uid://d15tsty3qgcer" path="res://map/connection/connection.gd" id="1_knh2s"]
+
 [node name="Connection" type="Line2D" unique_id=1176413470 groups=["connections"]]
+points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
 default_color = Color(1, 1, 1, 0.5019608)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
+script = ExtResource("1_knh2s")
