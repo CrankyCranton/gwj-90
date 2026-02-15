@@ -1,9 +1,11 @@
+# Not going big on the node hierarchy, accessing things by groups.
 class_name Map extends TileMapLayer
 
 
 @export var connect_distance := 64.0
 @export var decimation := 0.25
 @export var random_offset := 24.0
+@export var characters: Array[PackedScene]
 
 
 func _ready() -> void:
@@ -13,6 +15,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.0).timeout
 	generate_connections()
 	offset()
+	spawn_characters()
 
 
 func decimate() -> void:
@@ -52,9 +55,23 @@ func create_connection(a: Location, b: Location) -> void:
 	connection.b = b
 	add_child(connection)
 
+	a.connected_locations.append(b)
+	b.connected_locations.append(a)
+	a.connections.append(connection)
+	b.connections.append(connection)
+
 
 func offset() -> void:
 	for location: Location in get_tree().get_nodes_in_group(&"locations"):
 		location.position += Utils.rand_vec2_radial(random_offset)
 	for connection: Connection in get_tree().get_nodes_in_group(&"connections"):
 		connection.update()
+
+
+func spawn_characters() -> void:
+	var locations := get_tree().get_nodes_in_group(&"locations")
+	locations.shuffle()
+	for CHARACTER: PackedScene in characters:
+		var character := CHARACTER.instantiate()
+		add_child(character)
+		character.location = locations.pop_back()

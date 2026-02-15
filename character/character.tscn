@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c2p02ilt5sek2"]
+
+[ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_yf0e5"]
+[ext_resource type="Script" uid="uid://cnh4gtf2te6l4" path="res://character/character.gd" id="2_1l1n4"]
+
+[node name="Character" type="TextureButton" unique_id=618010067]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("1_yf0e5")
+script = ExtResource("2_1l1n4")
+
+[node name="Timer" type="Timer" parent="." unique_id=196002691]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
