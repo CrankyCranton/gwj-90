@@ -26,3 +26,11 @@ var tween: Tween
 
 func _on_timer_timeout() -> void:
 	location = location.connected_locations.pick_random()
+
+
+func _on_focus_entered() -> void:
+	pass # Enable accessable locations
+
+
+func _on_focus_exited() -> void:
+	pass # Disable acessable locations

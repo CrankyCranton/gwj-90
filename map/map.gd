@@ -54,6 +54,7 @@ func create_connection(a: Location, b: Location) -> void:
 	connection.a = a
 	connection.b = b
 	add_child(connection)
+	move_child(connection, 0)
 
 	a.connected_locations.append(b)
 	b.connected_locations.append(a)
