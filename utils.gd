@@ -16,3 +16,7 @@ static func rand_vec2_range(minimum: Vector2, maximum: Vector2) -> Vector2:
 
 static func rand_vec3_range(minimum: Vector3, maximum: Vector3) -> Vector3:
 	return Vector3(randf_range(minimum.x, maximum.x), randf_range(minimum.y, maximum.y), randf_range(minimum.z, maximum.z))
+
+
+static func rand_vec2_radial(radius: float) -> Vector2:
+	return Vector2(randf_range(0.0, radius), 0.0).rotated(TAU * randf())

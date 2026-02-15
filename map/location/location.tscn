@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kttdtllwq2rh" path="res://map/location/location.gd" id="1_ds6n1"]
 
-[node name="Location" type="Button" unique_id=1357230609]
+[node name="Location" type="Button" unique_id=1357230609 groups=["locations"]]
 offset_right = 8.0
 offset_bottom = 8.0
 script = ExtResource("1_ds6n1")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://38d2me6c81hk"]
 
-[node name="Connection" type="Line2D" unique_id=1176413470]
+[node name="Connection" type="Line2D" unique_id=1176413470 groups=["connections"]]
 width = 2.0
 default_color = Color(1, 1, 1, 0.5019608)
 joint_mode = 2
