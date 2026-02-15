@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://kttdtllwq2rh" path="res://map/location/location.gd" id="1_ds6n1"]
 
 [node name="Location" type="TextureButton" unique_id=524639371 groups=["locations"]]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 scale = Vector2(0.1, 0.1)

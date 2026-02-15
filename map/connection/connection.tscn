@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d15tsty3qgcer" path="res://map/connection/connection.gd" id="1_knh2s"]
 
 [node name="Connection" type="Line2D" unique_id=1176413470 groups=["connections"]]
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
 default_color = Color(1, 1, 1, 0.5019608)

@@ -9,6 +9,7 @@ class_name Character extends TextureButton
 
 var tween: Tween
 
+## Set this to move the character.
 @onready var location: Location:
 	set(value):
 		if location:
@@ -17,15 +18,30 @@ var tween: Tween
 		location = value
 		location.character = self
 
-		if tween:
-			tween.kill()
-		tween = create_tween()
-		tween.set_ease(tween_ease).set_trans(tween_transition).tween_property(
-				self, ^"position", location.position, tween_time)
+		tween_movement()
+		lift_fow()
 
 
-func _on_timer_timeout() -> void:
-	location = location.connected_locations.pick_random()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_accept"):
+		location = location.connected_locations.pick_random()
+
+
+func tween_movement() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.set_ease(tween_ease).set_trans(tween_transition).tween_property(
+			self, ^"position", location.position, tween_time)
+
+
+func lift_fow() -> void:
+	location.show()
+	for i in location.connected_locations:
+		i.show()
+		for j in i.connected_locations:
+			if j.visible:
+				i.get_connection_to_location(j).show()
 
 
 func _on_focus_entered() -> void:
