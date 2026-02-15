@@ -41,6 +41,8 @@ var visited_location_types: Array[Location.Type] = []
 # TEST
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_accept"):
+		# Add a random offset to prevent players from moving simultaniously
+		await get_tree().create_timer(randf_range(0.0, 0.2)).timeout
 		var location_types: Array[Location.Type] = []
 		location_types.append_array(Location.Type.values()) # Casting array types
 		var valid_locations := get_valid_locations(location_types)
@@ -88,9 +90,9 @@ func get_valid_locations(valid_types: Array[Location.Type]) -> Array[Location]:
 	@warning_ignore("shadowed_variable")
 	return location.connected_locations.filter(
 		func(location: Location) -> bool:
-			return location != last_location and location.type in valid_types and (
-				can_retravel_connections or
-				self.location.get_connection_to_location(location).character == null)
+			return location.character == null and location != last_location \
+					and location.type in valid_types and (can_retravel_connections or
+					self.location.get_connection_to_location(location).character == null)
 	)
 
 
