@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://c2p02ilt5sek2"]
 
-[ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_yf0e5"]
 [ext_resource type="Script" uid="uid://cnh4gtf2te6l4" path="res://character/character.gd" id="2_1l1n4"]
 
-[node name="Character" type="TextureButton" unique_id=618010067]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Character" type="Button" unique_id=1976108554]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+offset_right = 128.0
+offset_bottom = 128.0
 scale = Vector2(0.2, 0.2)
-texture_normal = ExtResource("1_yf0e5")
 script = ExtResource("2_1l1n4")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

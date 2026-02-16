@@ -4,6 +4,7 @@ extends Node
 signal card_gained(type: Location.Type)
 signal card_burnt(index: int)
 signal use_card(index: int)
+signal draw_card
 signal deck_size_changed(deck_size: int)
 signal discard_pile_size_changed(discard_pile_size: int)
 

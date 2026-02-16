@@ -1,4 +1,4 @@
-class_name Character extends TextureButton
+class_name Character extends Button
 
 
 signal moved(character: Character, location: Location)

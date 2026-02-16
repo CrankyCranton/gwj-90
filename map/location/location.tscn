@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://181qapuerrpv"]
 
-[ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_24pgi"]
 [ext_resource type="Script" uid="uid://kttdtllwq2rh" path="res://map/location/location.gd" id="1_ds6n1"]
 
-[node name="Location" type="TextureButton" unique_id=524639371 groups=["locations"]]
+[node name="Location" type="Button" unique_id=290503295 groups=["locations"]]
 visible = false
-offset_right = 8.0
-offset_bottom = 8.0
-scale = Vector2(0.1, 0.1)
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.3, 0.3)
+focus_mode = 0
 disabled = true
-texture_normal = ExtResource("1_24pgi")
 script = ExtResource("1_ds6n1")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cy6q1636h15ej"]
+
+[node name="MyBeautifulCard" type="Button" unique_id=1822269521]
+custom_minimum_size = Vector2(192, 256)
+offset_right = 8.0
+offset_bottom = 8.0

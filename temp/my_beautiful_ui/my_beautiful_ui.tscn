@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://celmqvmenig08"]
+
+[ext_resource type="Script" uid="uid://cc3yx1l3ho0uu" path="res://temp/my_beautiful_ui/my_beautiful_ui.gd" id="1_snfv8"]
+
+[node name="MyBeautifulUI" type="CanvasLayer" unique_id=1200815204]
+script = ExtResource("1_snfv8")
+
+[node name="CardHolder" type="HBoxContainer" parent="." unique_id=838243536]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Score" type="Label" parent="." unique_id=665638552]
+unique_name_in_owner = true
+offset_right = 52.0
+offset_bottom = 23.0
+text = "Score: "
+
+[node name="TurnsLeft" type="Label" parent="." unique_id=1104125669]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -87.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Turns Left: "
+
+[node name="DiscardPile" type="Label" parent="." unique_id=1041918962]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 99.0
+grow_vertical = 0
+text = "Discard Pile: "
+
+[node name="Deck" type="Label" parent="." unique_id=779538771]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Deck: "
