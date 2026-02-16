@@ -7,6 +7,7 @@ class_name Map extends TileMapLayer
 @export var decimation := 0.25
 @export var random_offset := 24.0
 @export var characters: Array[PackedScene]
+@export var character_count := 5
 @export_group("")
 @export var max_turns := 50
 @export var required_score := 50
@@ -94,8 +95,10 @@ func offset() -> void:
 func spawn_characters() -> void:
 	var locations := get_tree().get_nodes_in_group(&"locations")
 	locations.shuffle()
-	for CHARACTER: PackedScene in characters:
-		var character: Character = CHARACTER.instantiate()
+	characters.shuffle()
+	assert(character_count <= characters.size())
+	for i in character_count:
+		var character: Character = characters[i].instantiate()
 		character.loop_scored.connect(_on_character_loop_scored)
 		character.moved.connect(_on_character_moved)
 		add_child(character)
