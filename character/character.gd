@@ -10,6 +10,7 @@ signal loop_scored(character: Character, loop_score: int)
 @export var can_revisit_location_types := true
 @export var can_move_onto_other_character := false
 @export var can_revisit_location := true
+@export var can_move_to_last_location := true
 @export_group("Scoring")
 @export var clear_after_loop := true
 @export var connection_points := 1
@@ -121,7 +122,8 @@ func get_valid_locations(valid_types: Array[Location.Type]) -> Array[Location]:
 	return location.connected_locations.filter(
 		func(location: Location) -> bool:
 			# Might be about time to split this bad boy into a multi-liner
-			return location != last_location and location.type in valid_types \
+			return  location.type in valid_types \
+					and (can_move_to_last_location or location != last_location) \
 					and (can_move_onto_other_character or location.character == null) \
 					and (can_revisit_location or location.claim == null) \
 					and (can_revisit_location_types or not location.type in visited_location_types) \
