@@ -18,13 +18,14 @@ var score := 0:
 		if score >= required_score:
 			Bus.won.emit()
 
+@onready var cards_manager: CardsManager = $CardsManager
 # Must be @onready because of when @export variables are assigned
 @onready var turns_left := max_turns:
 	set(value):
 		turns_left = value
 		Bus.turns_left_changed.emit(turns_left)
-		if turns_left <= 0 and score < required_score:
-			Bus.lost.emit()
+		if turns_left <= 0:
+			Bus.ended.emit(score)
 
 
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _ready() -> void:
 	offset()
 	spawn_characters()
 	turns_left = turns_left # Call setter
+	cards_manager.init_deck()
 
 
 func decimate() -> void:
