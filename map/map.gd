@@ -2,12 +2,29 @@
 class_name Map extends TileMapLayer
 
 
+@export_group("Generation")
 @export var connect_distance := 64.0
 @export var decimation := 0.25
 @export var random_offset := 24.0
 @export var characters: Array[PackedScene]
+@export_group("")
+@export var max_turns := 50
+@export var required_score := 50
 
-var score := 0
+var score := 0:
+	set(value):
+		score = value
+		Bus.total_score_changed.emit(score)
+		if score >= required_score:
+			Bus.won.emit()
+
+# Must be @onready because of when @export variables are assigned
+@onready var turns_left := max_turns:
+	set(value):
+		turns_left = value
+		Bus.turns_left_changed.emit(turns_left)
+		if turns_left <= 0 and score < required_score:
+			Bus.lost.emit()
 
 
 func _ready() -> void:
@@ -18,6 +35,7 @@ func _ready() -> void:
 	generate_connections()
 	offset()
 	spawn_characters()
+	turns_left = turns_left # Call setter
 
 
 func decimate() -> void:
@@ -77,10 +95,14 @@ func spawn_characters() -> void:
 	for CHARACTER: PackedScene in characters:
 		var character: Character = CHARACTER.instantiate()
 		character.loop_scored.connect(_on_character_loop_scored)
+		character.moved.connect(_on_character_moved)
 		add_child(character)
 		character.location = locations.pop_back()
 
 
 func _on_character_loop_scored(_character: Character, loop_score: int) -> void:
 	score += loop_score
-	Bus.total_score_changed.emit(score)
+
+
+func _on_character_moved(_character: Character, _location: Location) -> void:
+	turns_left -= 1

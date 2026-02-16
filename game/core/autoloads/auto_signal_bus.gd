@@ -14,10 +14,11 @@ signal character_deselected(character: Character)
 signal location_selected(location: Location)
 signal location_deselected(location: Location)
 # By default, all locations are disabled.
-signal enable_location(location: Location)
-signal disable_location(location: Location)
+signal set_location_enabled(location: Location, enabled: bool)
 
 signal loop_scored(character: Character, loop_score: int)
 signal total_score_changed(score: int)
+signal turns_left_changed(turns: int)
+# TODO Emit win/lose signals after resolving on a win/lose condition
 signal won
 signal lost

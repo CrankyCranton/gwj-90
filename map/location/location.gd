@@ -19,8 +19,13 @@ enum Type {
 var type := (randi() % Type.size()) as Type
 
 var character: Character = null
+var claim: Character = null
 var connections: Array[Connection]
 var connected_locations: Array[Location]
+
+
+func _ready() -> void:
+	Bus.set_location_enabled.connect(_on_bus_set_location_enabled)
 
 
 func is_connected_to_location(location: Location) -> bool:
@@ -32,3 +37,21 @@ func get_connection_to_location(location: Location) -> Connection:
 		if location in [connection.a, connection.b]:
 			return connection
 	return null
+
+
+func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
+	if location != self:
+		return
+
+	visible = enabled
+	disabled = not enabled
+	if not enabled:
+		release_focus()
+
+
+func _on_focus_entered() -> void:
+	Bus.location_selected.emit(self)
+
+
+func _on_focus_exited() -> void:
+	Bus.location_deselected.emit(self)

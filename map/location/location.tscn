@@ -11,3 +11,6 @@ scale = Vector2(0.1, 0.1)
 disabled = true
 texture_normal = ExtResource("1_24pgi")
 script = ExtResource("1_ds6n1")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
