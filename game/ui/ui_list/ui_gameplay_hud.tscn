@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://p588hdnemxov"]
+
+[ext_resource type="PackedScene" uid="uid://bgg0m2vfmys0r" path="res://game/ui/class_ui_layer.tscn" id="1_ng07u"]
+[ext_resource type="Script" uid="uid://dopn4n1w14sag" path="res://game/ui/ui_list/ui_gameplay_hud.gd" id="2_5s7pl"]
+
+[node name="UILayer" unique_id=1575267630 instance=ExtResource("1_ng07u")]
+script = ExtResource("2_5s7pl")

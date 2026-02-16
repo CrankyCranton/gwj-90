@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bgg0m2vfmys0r"]
+
+[ext_resource type="Script" uid="uid://df8symvnbmos4" path="res://game/ui/class_ui_layer.gd" id="1_v78jo"]
+
+[node name="UILayer" type="Control" unique_id=1575267630]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v78jo")
+
+[connection signal="data_finished_parsing" from="." to="." method="_on_data_finished_parsing"]
+[connection signal="layer_closing" from="." to="." method="_on_layer_closing"]
+[connection signal="ready" from="." to="." method="_on_ready"]

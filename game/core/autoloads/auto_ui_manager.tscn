@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://eehkengtluom"]
+
+[ext_resource type="Script" uid="uid://lvytfic2s182" path="res://game/core/autoloads/auto_ui_manager.gd" id="1_rvayk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvayk"]
+bg_color = Color(0, 0, 0, 0.5)
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+
+[node name="UIManager" type="CanvasLayer" unique_id=603796408]
+layer = 10
+script = ExtResource("1_rvayk")
+
+[node name="Root" type="Control" parent="." unique_id=899114068]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DEBUG" type="Control" parent="." unique_id=189632657]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OpenLayers" type="Label" parent="DEBUG" unique_id=1349893440]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -312.0
+offset_right = -15.0
+offset_bottom = -286.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_rvayk")
+text = "Open Layers"
+horizontal_alignment = 1
+
+[node name="LayerDebugNode" type="VBoxContainer" parent="DEBUG/OpenLayers" unique_id=1382351633]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = 1.0
+offset_right = 50.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[connection signal="child_order_changed" from="Root" to="." method="_on_root_child_order_changed"]
