@@ -17,7 +17,7 @@ signal location_deselected(location: Location)
 signal enable_location(location: Location)
 signal disable_location(location: Location)
 
-signal loop_scored(loop_score: int)
-signal score_changed(score: int)
+signal loop_scored(character: Character, loop_score: int)
+signal total_score_changed(score: int)
 signal won
 signal lost

@@ -1,9 +1,16 @@
 class_name Character extends TextureButton
 
 
+signal loop_scored(character: Character, loop_score: int)
+
 @export var path_color := Color()
-@export var clear_after_loop := true
+@export_group("Movement")
 @export var can_retravel_connections := false
+@export var can_revisit_location_types := true
+@export_group("Scoring")
+@export var clear_after_loop := true
+@export var connection_points := 1
+@export var location_type_points := 1
 @export_group("Tween", "tween")
 @export var tween_time := 0.2
 @export var tween_transition := Tween.TRANS_SINE
@@ -68,16 +75,20 @@ func lift_fow() -> void:
 
 
 func complete_loop() -> void:
-	var score := visited_location_types.size()
+	var score := visited_location_types.size() * location_type_points
 
 	for i: Connection in get_tree().get_nodes_in_group(&"connections").filter(
 				filter_character_connections):
-		score += 1
+		score += connection_points
 		if clear_after_loop:
 			i.character = null
+
+	# TODO Remove print statements after they're no longer needed
 	print(self, ": Loop completed! Score: ", score)
 	print("\tLocations visited: ", visited_location_types)
 	visited_location_types.clear()
+	Bus.loop_scored.emit(self, score)
+	loop_scored.emit(self, score)
 
 
 func filter_character_connections(connection: Connection) -> bool:
@@ -90,8 +101,11 @@ func get_valid_locations(valid_types: Array[Location.Type]) -> Array[Location]:
 	@warning_ignore("shadowed_variable")
 	return location.connected_locations.filter(
 		func(location: Location) -> bool:
+			# Might be about time to split this bad boy into a multi-liner
 			return location.character == null and location != last_location \
-					and location.type in valid_types and (can_retravel_connections or
+					and location.type in valid_types \
+					and (can_revisit_location_types or not location.type in visited_location_types) \
+					and (can_retravel_connections or
 					self.location.get_connection_to_location(location).character == null)
 	)
 

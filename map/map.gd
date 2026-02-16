@@ -7,6 +7,8 @@ class_name Map extends TileMapLayer
 @export var random_offset := 24.0
 @export var characters: Array[PackedScene]
 
+var score := 0
+
 
 func _ready() -> void:
 	connect_distance = pow(connect_distance, 2.0)
@@ -73,6 +75,12 @@ func spawn_characters() -> void:
 	var locations := get_tree().get_nodes_in_group(&"locations")
 	locations.shuffle()
 	for CHARACTER: PackedScene in characters:
-		var character := CHARACTER.instantiate()
+		var character: Character = CHARACTER.instantiate()
+		character.loop_scored.connect(_on_character_loop_scored)
 		add_child(character)
 		character.location = locations.pop_back()
+
+
+func _on_character_loop_scored(_character: Character, loop_score: int) -> void:
+	score += loop_score
+	Bus.total_score_changed.emit(score)
