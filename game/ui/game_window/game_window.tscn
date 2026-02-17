@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://cqsqsoeqi2xv3"]
 
 [ext_resource type="PackedScene" uid="uid://bgg0m2vfmys0r" path="res://game/ui/class_ui_layer.tscn" id="1_gonab"]
-[ext_resource type="Script" uid="uid://cgmpxhgnled2k" path="res://game/ui/game_window/game_window.gd" id="2_1012e"]
 [ext_resource type="PackedScene" uid="uid://rqfjuu0k5g1k" path="res://map/map.tscn" id="2_qii18"]
 
 [node name="GameWindow" unique_id=1575267630 instance=ExtResource("1_gonab")]
-script = ExtResource("2_1012e")
+script = null
 
 [node name="GraphEdit" type="GraphEdit" parent="." index="0" unique_id=796142121]
 layout_mode = 1
@@ -23,7 +22,14 @@ show_arrange_button = false
 
 [node name="GraphElement" type="GraphElement" parent="GraphEdit" index="1" unique_id=1457228139]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 6890.0
+offset_bottom = 5152.0
+draggable = false
+selectable = false
 
 [node name="Map" parent="GraphEdit/GraphElement" index="0" unique_id=1864008392 instance=ExtResource("2_qii18")]
+max_turns = 50
+empty_space = 30
+connect_distance = 1.0
+random_offset = 0.35
+character_count = 5

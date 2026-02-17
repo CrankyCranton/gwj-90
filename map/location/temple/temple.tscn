@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dopyxp6x7wlht"]
 
 [ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_xyccu"]
+[ext_resource type="Texture2D" uid="uid://bmuvf5mlyl8tr" path="res://temp/PNG/Tiles/Medieval/medieval_church.png" id="2_hhbpi"]
 [ext_resource type="Script" uid="uid://dxwbxwmvblmv4" path="res://map/location/temple/temple.gd" id="2_jyeow"]
 
 [node name="Temple" unique_id=290503295 instance=ExtResource("1_xyccu")]
+icon = ExtResource("2_hhbpi")
 script = ExtResource("2_jyeow")

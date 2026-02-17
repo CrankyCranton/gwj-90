@@ -13,6 +13,7 @@ var selected_card: MyBeautifulCard = null
 
 func _ready() -> void:
 	Bus.card_burnt.connect(_on_bus_card_burnt)
+	Bus.card_perma_burnt.connect(_on_bus_card_burnt)
 	Bus.card_gained.connect(_on_bus_card_gained)
 	Bus.deck_size_changed.connect(_on_bus_deck_size_changed)
 	Bus.discard_pile_size_changed.connect(_on_bus_discard_pile_size_changed)
@@ -64,7 +65,6 @@ func _on_bus_character_selected(character: Character) -> void:
 func _on_bus_location_selected(location: Location) -> void:
 	Bus.move_character.emit(selected_character, location)
 	Bus.use_card.emit(selected_card.get_index())
-	Bus.draw_card.emit()
 
 
 @warning_ignore("shadowed_variable")

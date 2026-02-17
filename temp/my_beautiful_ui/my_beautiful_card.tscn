@@ -6,4 +6,6 @@
 custom_minimum_size = Vector2(192, 256)
 offset_right = 8.0
 offset_bottom = 8.0
+icon_alignment = 1
 script = ExtResource("1_ud3d7")
+icons_lookup = null

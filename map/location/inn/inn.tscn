@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_mi5jq"]
 [ext_resource type="Script" uid="uid://duqu5msterjin" path="res://map/location/inn/inn.gd" id="2_g7gqw"]
+[ext_resource type="Texture2D" uid="uid://cj3vgva52ob2k" path="res://temp/PNG/Tiles/Medieval/medieval_cabin.png" id="2_iem3y"]
 
 [node name="inn" unique_id=290503295 instance=ExtResource("1_mi5jq")]
+icon = ExtResource("2_iem3y")
 script = ExtResource("2_g7gqw")
 points = 3

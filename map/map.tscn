@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://21njw0pq8biw" path="res://character/character_5.tscn" id="7_i5grx"]
 [ext_resource type="PackedScene" uid="uid://r4vnq77p5ebp" path="res://map/location/grass/grass.tscn" id="7_ofiht"]
 [ext_resource type="PackedScene" uid="uid://bt10wa310i4sx" path="res://map/location/hill/hill.tscn" id="8_05mli"]
-[ext_resource type="PackedScene" uid="uid://cfe0yr55xf518" path="res://game/cards_manager/cards_manager.tscn" id="8_kxmgb"]
 [ext_resource type="PackedScene" uid="uid://cko6dr3rhic4k" path="res://map/location/inn/inn.tscn" id="9_de6fw"]
 [ext_resource type="PackedScene" uid="uid://dxcv3vhw0j3ot" path="res://map/location/lake/lake.tscn" id="10_kb5w5"]
 [ext_resource type="PackedScene" uid="uid://bgvsbpqabw2oj" path="res://map/location/library/library.tscn" id="11_rqrn2"]
@@ -36,6 +35,7 @@ sources/1 = SubResource("TileSetScenesCollectionSource_4hjbm")
 [node name="Map" type="TileMapLayer" unique_id=1864008392]
 tile_set = SubResource("TileSet_a0dt8")
 script = ExtResource("1_hgrid")
+max_turns = null
 locations_distribution = Dictionary[PackedScene, int]({
 ExtResource("3_iqbtl"): 10,
 ExtResource("4_81obp"): 10,
@@ -53,9 +53,10 @@ ExtResource("15_ta71l"): 10,
 ExtResource("16_pi7e5"): 10,
 ExtResource("17_81obp"): 10
 })
+empty_space = null
+connect_distance = null
+random_offset = null
+character_count = null
 characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
-
-[node name="CardsManager" parent="." unique_id=756908618 instance=ExtResource("8_kxmgb")]
-editor_description = "Doesn't need to be a child of Map, but it's convenient to create a new deck for every new game."
 
 [node name="MyBeautifulUI" parent="." unique_id=1200815204 instance=ExtResource("24_81obp")]

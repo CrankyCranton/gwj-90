@@ -1,6 +1,10 @@
 class_name Location extends Button
 
 
+static var icons_lookup: Dictionary[Script, Texture2D] = {
+	null: preload("uid://c57cnquykwost"),
+}
+
 @export var points := 1
 @export var view_range := 1
 @export_group("Movement")
@@ -15,8 +19,10 @@ var connected_locations: Array[Location]
 
 
 func _ready() -> void:
+	if not icons_lookup.has(get_script()):
+		icons_lookup[get_script()] = icon
 	add_to_group(get_script().get_global_name().to_snake_case()) # IDK how to convert it to plural, sry
-	#hide()
+	hide()
 	Bus.set_location_enabled.connect(_on_bus_set_location_enabled)
 
 
@@ -24,24 +30,32 @@ func _get_points(_path: Array) -> int:
 	return points
 
 
+func _draw_card() -> void:
+	CardsManager.draw_card()
+
+
 @warning_ignore("shadowed_variable")
-func lift_fow(view_range := self.view_range) -> void:
-	show()
-	for i in connected_locations:
-		i.show()
+func lift_fow(on := self, view_range := self.view_range) -> void:
+	view_range -= 1
+	on.show()
+	for i in on.connected_locations:
 		for j in i.connections:
 			j.show()
 			j.update_gradient()
+		if view_range >= 0:
+			lift_fow(i, view_range)
 
 
 # Made input argument "valid_types" an array, in case it needs to display the
 # valid locations for all the card types you have in hand.
-func get_valid_locations(valid_types: Array[Script]) -> Array[Location]:
+## Null is a wildcard.
+func get_valid_locations(valid_types: Array[Script] = []) -> Array[Location]:
 	@warning_ignore("shadowed_variable")
 	return connected_locations.filter(
 		func(location: Location) -> bool:
 			# Might be about time to split this bad boy into a multi-liner
-			return  location.get_script() in valid_types \
+			return  (self is Hill or location is Lake or valid_types.has(null) \
+					or location.get_script() in valid_types) \
 					and (can_move_onto_other_character or location.character == null) \
 					and (can_revisit_location or location.claim == null) \
 					and (can_retravel_connections or

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Bus="*uid://3wuvbpnot46t"
 Instance="*uid://bwmybknkmp816"
 UI="*uid://eehkengtluom"
+CardsManager="*uid://vlkidwjxh1f4"
 
 [debug]
 

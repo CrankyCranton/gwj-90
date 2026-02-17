@@ -3,6 +3,7 @@ class_name Character extends Button
 
 signal moved(character: Character, location: Location)
 signal path_scored(character: Character, path_score: int)
+signal unfinished_path_score_changed(character: Character, path_score: int)
 
 @export var path_color := Color()
 @export var selected_color := Color.WHITE
@@ -17,32 +18,37 @@ signal path_scored(character: Character, path_score: int)
 @export var tween_ease := Tween.EASE_IN_OUT
 
 var tween: Tween
-var drawing := false
-var last_location: Location
-var visited_location_types: Array[Script] = []
-var paths: Array[Array] = []
+var tracing := false
+var paths: Array[Array] = [[]]
 
+# TODO Put most of movement handling in location.gd
 ## Set this to move the character.
 @onready var location: Location = null:
 	set(value):
 		assert(value != null)
 		if value is Inn:
-			drawing = true
-		if value is Camp:
+			tracing = true
+		elif value is Camp:
 			score_path()
+		else:
+			var score := get_path_score(-1)
+			unfinished_path_score_changed.emit(self, score)
+			Bus.character_unfinished_path_score_changed.emit(self, score)
+
 		if location:
-			location.get_connection_to_location(value).character = self
+			if tracing:
+				location.get_connection_to_location(value).character = self
 			location.character = null
-			last_location = location
 			moved.emit(self, value)
+			value._draw_card()
 
 		# NOTICE location is only assigned to value at this point.
 		# In the code above this, "location" is the old location.
 		location = value
-		if not visited_location_types.has(location.get_script()):
-			visited_location_types.append(location.get_script())
 		location.character = self
-		location.claim = self
+		if tracing: # Redundant
+			location.claim = self
+			paths.back().append(location)
 
 		tween_movement()
 		location.lift_fow()
@@ -63,24 +69,18 @@ func tween_movement() -> void:
 
 
 func score_path() -> void:
-	var score := visited_location_types.size() * location_type_points
-
-	for i: Connection in get_tree().get_nodes_in_group(&"connections").filter(
-				filter_character_connections):
-		score += connection_points
-		if clear_after_score:
-			i.character = null
-	for i: Location in get_tree().get_nodes_in_group(&"locations").filter(
-			filter_character_locations):
-				if clear_after_score:
-					i.claim = null
-
-	# TODO Remove print statements after they're no longer needed
-	print(self, ": Loop completed! Score: ", score)
-	print("\tLocations visited: ", visited_location_types)
-	visited_location_types.clear()
+	var score := get_path_score(-1) * 2
+	paths.append([])
+	tracing = false
 	Bus.path_scored.emit(self, score)
 	path_scored.emit(self, score)
+
+
+func get_path_score(index: int) -> int:
+	var score := 0
+	for l: Location in paths[index]:
+		score += l._get_points(paths[index])
+	return score
 
 
 func filter_character_connections(connection: Connection) -> bool:

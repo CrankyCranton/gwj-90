@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_a6ryb"]
 [ext_resource type="Script" uid="uid://up5exf3ery2q" path="res://map/location/camp/camp.gd" id="2_2lili"]
+[ext_resource type="Texture2D" uid="uid://cti666pp7khap" path="res://temp/PNG/Tiles/Modern/modern_campsite.png" id="2_oll34"]
 
 [node name="Camp" unique_id=290503295 instance=ExtResource("1_a6ryb")]
+icon = ExtResource("2_oll34")
 script = ExtResource("2_2lili")
 points = 3

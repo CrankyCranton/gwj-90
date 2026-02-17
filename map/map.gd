@@ -31,7 +31,6 @@ var grid_size: Vector2i:
 	get:
 		return Vector2i.ONE * ceili(sqrt(location_count + empty_space))
 
-@onready var cards_manager: CardsManager = $CardsManager
 # Must be @onready because of when @export variables are assigned
 @onready var turns_left := max_turns:
 	set(value):
@@ -47,7 +46,7 @@ func _ready() -> void:
 	offset()
 	spawn_characters()
 	turns_left = turns_left # Call setter
-	cards_manager.init_deck()
+	CardsManager.init_deck()
 
 
 ## Might be able to be combined with generate_connections() for optimization.
@@ -103,6 +102,7 @@ func create_connection(a: Location, b: Location) -> void:
 	connection.a = a
 	connection.b = b
 	add_child(connection)
+	move_child(connection, 0)
 
 	a.connected_locations.append(b)
 	b.connected_locations.append(a)
