@@ -19,7 +19,7 @@ signal location_deselected(location: Location)
 # By default, all locations are disabled.
 signal set_location_enabled(location: Location, enabled: bool)
 
-signal loop_scored(character: Character, loop_score: int)
+signal path_scored(character: Character, path_score: int)
 signal total_score_changed(score: int)
 signal turns_left_changed(turns: int)
 # Ignore 'won' if the game doesn't end immediately when the player reaches the required score

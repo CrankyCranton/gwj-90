@@ -2,21 +2,15 @@ class_name Character extends GraphElement
 
 
 signal moved(character: Character, location: Location)
-signal loop_scored(character: Character, loop_score: int)
+signal path_scored(character: Character, path_score: int)
 
 @export var path_color := Color()
 @export var selected_color := Color.WHITE
 @export var offset := Vector2(16.0, 24.0)
-@export_group("Movement")
-@export var can_retravel_connections := false
-@export var can_revisit_location_types := true
-@export var can_move_onto_other_character := false
-@export var can_revisit_location := false
-@export var can_move_to_last_location := true
 @export_group("Scoring")
 @export var clear_after_score := false
 @export var connection_points := 0
-@export var location_type_points := 1
+@export var location_type_points := 0
 @export_group("Tween", "tween")
 @export var tween_time := 0.2
 @export var tween_transition := Tween.TRANS_SINE
@@ -86,8 +80,8 @@ func score_path() -> void:
 	print(self, ": Loop completed! Score: ", score)
 	print("\tLocations visited: ", visited_location_types)
 	visited_location_types.clear()
-	Bus.loop_scored.emit(self, score)
-	loop_scored.emit(self, score)
+	Bus.path_scored.emit(self, score)
+	path_scored.emit(self, score)
 
 
 func filter_character_connections(connection: Connection) -> bool:
@@ -97,23 +91,6 @@ func filter_character_connections(connection: Connection) -> bool:
 @warning_ignore("shadowed_variable")
 func filter_character_locations(location: Location) -> bool:
 	return location.claim == self
-
-
-# Made input argument "valid_types" an array, in case it needs to display the
-# valid locations for all the card types you have in hand.
-func get_valid_locations(valid_types: Array[Script]) -> Array[Location]:
-	@warning_ignore("shadowed_variable")
-	return location.connected_locations.filter(
-		func(location: Location) -> bool:
-			# Might be about time to split this bad boy into a multi-liner
-			return  location.get_script() in valid_types \
-					and (can_move_to_last_location or location != last_location) \
-					and (can_move_onto_other_character or location.character == null) \
-					and (can_revisit_location or location.claim == null) \
-					and (can_revisit_location_types or not location.get_script() in visited_location_types) \
-					and (can_retravel_connections or
-					self.location.get_connection_to_location(location).character == null)
-	)
 
 
 @warning_ignore("shadowed_variable")
@@ -129,7 +106,7 @@ func _on_bus_fetch_valid_character_movement(character: Character,
 		valid_location_types: Array[Script]) -> void:
 	if character != self:
 		return
-	Bus.return_valid_character_movement.emit(self, get_valid_locations(valid_location_types))
+	Bus.return_valid_character_movement.emit(self, location.get_valid_locations(valid_location_types))
 
 
 func _on_node_selected() -> void:

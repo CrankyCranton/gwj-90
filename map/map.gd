@@ -127,7 +127,7 @@ func spawn_characters() -> void:
 	for i in character_count:
 		var character: Character = characters[i].instantiate()
 		#character.offset = character.offset.rotated(float(i) / character_count * TAU)
-		character.loop_scored.connect(_on_character_loop_scored)
+		character.path_scored.connect(_on_character_path_scored)
 		character.moved.connect(_on_character_moved)
 		add_sibling.call_deferred(character)
 		await character.ready
@@ -138,7 +138,7 @@ func get_aprox_cell_size() -> float:
 	return (tile_set.tile_size.x + tile_set.tile_size.y) / 2.0
 
 
-func _on_character_loop_scored(_character: Character, loop_score: int) -> void:
+func _on_character_path_scored(_character: Character, loop_score: int) -> void:
 	score += loop_score
 
 
