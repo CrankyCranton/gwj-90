@@ -23,9 +23,9 @@ var is_closing:bool = false
 ## Helper functions for UI. Pass data for UI to process if needed.
 func add_to_root(parsed_data:Dictionary = {}) -> void:
 	UI.root.add_child(self)
-	
+
 	Input.mouse_mode = mouse_mode
-	
+
 	if uses_open_animation:
 		assert((layer_animations != null), "uses_open_animation is true; but no animation player selected.")
 		assert(layer_animations.has_animation("open"), 'No "close" animation found in player.')
@@ -34,7 +34,7 @@ func add_to_root(parsed_data:Dictionary = {}) -> void:
 	else:
 		if fade_in_time > 0.0:
 			await _fade(1.0)
-	
+
 	if parsed_data.is_empty():
 		is_ready = true
 		layer_opened.emit(self)
@@ -64,7 +64,7 @@ func _on_layer_closing(_none:UI_Layer) -> void:
 	else:
 		if fade_out_time > 0.0:
 			await _fade(0.0)
-	
+
 	layer_closed.emit(self)
 
 

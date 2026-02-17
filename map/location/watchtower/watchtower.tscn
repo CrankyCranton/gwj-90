@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://byied770bhhqw"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_01ih8"]
+[ext_resource type="Script" uid="uid://dvtl16rljttoi" path="res://map/location/watchtower/watchtower.gd" id="2_2n21l"]
+
+[node name="Watchtower" unique_id=290503295 instance=ExtResource("1_01ih8")]
+script = ExtResource("2_2n21l")
+points = 2
+view_range = 2

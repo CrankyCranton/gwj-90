@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cy6q1636h15ej"]
 
+[ext_resource type="Script" uid="uid://0nleu641eyg2" path="res://temp/my_beautiful_ui/my_beautiful_card.gd" id="1_ud3d7"]
+
 [node name="MyBeautifulCard" type="Button" unique_id=1822269521]
 custom_minimum_size = Vector2(192, 256)
 offset_right = 8.0
 offset_bottom = 8.0
+script = ExtResource("1_ud3d7")

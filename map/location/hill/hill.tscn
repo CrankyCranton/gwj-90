@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bt10wa310i4sx"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_uwg2f"]
+[ext_resource type="Script" uid="uid://buajyntxrmlo0" path="res://map/location/hill/hill.gd" id="2_rrs4h"]
+
+[node name="Hill" unique_id=290503295 instance=ExtResource("1_uwg2f")]
+script = ExtResource("2_rrs4h")
+points = 2

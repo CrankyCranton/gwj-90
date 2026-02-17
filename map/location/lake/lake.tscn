@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dxcv3vhw0j3ot"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_g4hur"]
+[ext_resource type="Script" uid="uid://dy8flkltnou40" path="res://map/location/lake/lake.gd" id="2_1a0vk"]
+
+[node name="Lake" unique_id=290503295 instance=ExtResource("1_g4hur")]
+script = ExtResource("2_1a0vk")
+points = 2

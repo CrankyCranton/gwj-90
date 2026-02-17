@@ -2,7 +2,7 @@ class_name MyBeautifulUI extends CanvasLayer
 
 
 var selected_character: Character = null
-var selected_card: Button = null
+var selected_card: MyBeautifulCard = null
 
 @onready var card_holder: HBoxContainer = %CardHolder
 @onready var score: Label = %Score
@@ -25,14 +25,14 @@ func _ready() -> void:
 
 func fetch_valid_spots() -> void:
 	# Ideally cards should store their type instead of looking it up by icon, but it's throw-away code
-	var types: Array[Location.Type] = []
-	types.append(Location.SPRITES.find(selected_card.icon))
+	var types: Array[Script] = []
+	types.append(selected_card.type)
 	Bus.fetch_valid_character_movement.emit(selected_character, types)
 
 
-func _on_bus_card_gained(type: Location.Type) -> void:
-	var card: Button = preload("uid://cy6q1636h15ej").instantiate()
-	card.icon = Location.SPRITES[type]
+func _on_bus_card_gained(type: Script) -> void:
+	var card: MyBeautifulCard = preload("uid://cy6q1636h15ej").instantiate()
+	card.type = type
 	card.focus_entered.connect(_on_my_beautiful_card_focus_entered.bind(card))
 	card_holder.add_child(card)
 	card.grab_focus()

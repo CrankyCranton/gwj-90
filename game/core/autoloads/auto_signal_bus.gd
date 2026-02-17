@@ -1,7 +1,7 @@
 extends Node
 
 
-signal card_gained(type: Location.Type)
+signal card_gained(type: Script)
 signal card_burnt(index: int)
 signal use_card(index: int)
 signal draw_card
@@ -9,7 +9,7 @@ signal deck_size_changed(deck_size: int)
 signal discard_pile_size_changed(discard_pile_size: int)
 
 signal move_character(character: Character, location: Location)
-signal fetch_valid_character_movement(character: Character, valid_location_types: Array[Location.Type])
+signal fetch_valid_character_movement(character: Character, valid_location_types: Array[Script])
 signal return_valid_character_movement(character: Character, locations: Array[Location])
 
 signal character_selected(character: Character)

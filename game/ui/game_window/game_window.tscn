@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cqsqsoeqi2xv3"]
+
+[ext_resource type="PackedScene" uid="uid://bgg0m2vfmys0r" path="res://game/ui/class_ui_layer.tscn" id="1_gonab"]
+[ext_resource type="Script" uid="uid://cgmpxhgnled2k" path="res://game/ui/game_window/game_window.gd" id="2_1012e"]
+[ext_resource type="PackedScene" uid="uid://rqfjuu0k5g1k" path="res://map/map.tscn" id="2_qii18"]
+[ext_resource type="PackedScene" uid="uid://celmqvmenig08" path="res://temp/my_beautiful_ui/my_beautiful_ui.tscn" id="4_6sxl0"]
+
+[node name="GameWindow" unique_id=1575267630 instance=ExtResource("1_gonab")]
+script = ExtResource("2_1012e")
+
+[node name="GraphEdit" type="GraphEdit" parent="." index="0" unique_id=796142121]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_grid = false
+snapping_enabled = false
+minimap_enabled = false
+show_grid_buttons = false
+show_minimap_button = false
+show_arrange_button = false
+
+[node name="Map" parent="GraphEdit" index="1" unique_id=1864008392 instance=ExtResource("2_qii18")]
+
+[node name="MyBeautifulUI" parent="." index="1" unique_id=1200815204 instance=ExtResource("4_6sxl0")]

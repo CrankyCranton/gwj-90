@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://r4vnq77p5ebp"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_oh35f"]
+[ext_resource type="Script" uid="uid://daannk7tv2yw6" path="res://map/location/grass/grass.gd" id="2_cvou7"]
+
+[node name="Grass" unique_id=290503295 instance=ExtResource("1_oh35f")]
+script = ExtResource("2_cvou7")
+points = 2

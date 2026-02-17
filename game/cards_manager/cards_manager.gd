@@ -4,9 +4,9 @@ class_name CardsManager extends Node
 
 @export var initial_hand_size := 5
 
-var deck: Array[Location.Type] = []
-var hand: Array[Location.Type] = []
-var discard_pile: Array[Location.Type] = []
+var deck: Array[Script] = []
+var hand: Array[Script] = []
+var discard_pile: Array[Script] = []
 
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func init_deck() -> void:
 	for location: Location in get_tree().get_nodes_in_group(&"locations"):
-		deck.append(location.type)
+		deck.append(location.get_script())
 	deck.shuffle() # Might not be necessary if the locations are already shuffled
 	for i in initial_hand_size:
 		draw_card()
@@ -29,7 +29,7 @@ func draw_card() -> void:
 		deck.shuffle()
 		Bus.discard_pile_size_changed.emit(discard_pile.size())
 
-	var card: Location.Type = deck.pop_back()
+	var card: Script = deck.pop_back()
 	hand.append(card)
 	Bus.card_gained.emit(card)
 	Bus.deck_size_changed.emit(deck.size())

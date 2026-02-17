@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://deqlu2tnogpgn"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_3e2mq"]
+[ext_resource type="Script" uid="uid://bttr1h3oppjoa" path="res://map/location/obelisk/obelisk.gd" id="2_2yx77"]
+
+[node name="Obelisk" unique_id=290503295 instance=ExtResource("1_3e2mq")]
+script = ExtResource("2_2yx77")

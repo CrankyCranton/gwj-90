@@ -1,51 +1,36 @@
-# Might have to make a look-up dictionary/array for the textures that apply to each type.
-# If that's too inconvenient, it'll probably be better to make each type it's own inherited scene,
-# like with the characters.
-class_name Location extends Button
+class_name Location extends GraphElement
 
 
-enum Type {
-	GRASS,
-	TREE,
-	LAKE,
-	HILL,
-	CAVE,
-	INN,
-	RELIC,
-	OBELISK,
-	TEMPLE,
-}
-
-const SPRITES: Array[Texture2D] = [
-	preload("res://temp/Colored/genericItem_color_001.png"),
-	preload("res://temp/Colored/genericItem_color_002.png"),
-	preload("res://temp/Colored/genericItem_color_003.png"),
-	preload("res://temp/Colored/genericItem_color_004.png"),
-	preload("res://temp/Colored/genericItem_color_005.png"),
-	preload("res://temp/Colored/genericItem_color_006.png"),
-	preload("res://temp/Colored/genericItem_color_007.png"),
-	preload("res://temp/Colored/genericItem_color_008.png"),
-	preload("res://temp/Colored/genericItem_color_009.png"),
-	preload("res://temp/Colored/genericItem_color_010.png"),
-	preload("res://temp/Colored/genericItem_color_011.png"),
-	preload("res://temp/Colored/genericItem_color_012.png"),
-	preload("res://temp/Colored/genericItem_color_013.png"),
-	preload("res://temp/Colored/genericItem_color_014.png"),
-	preload("res://temp/Colored/genericItem_color_015.png"),
-
-]
-
-var type := (randi() % Type.size()) as Type
+@export var points := 1
+@export var view_range := 1
 
 var character: Character = null
 var claim: Character = null
 var connections: Array[Connection]
 var connected_locations: Array[Location]
 
+@onready var icon: TextureRect = $Icon
+@onready var disabled_color := icon.modulate
+
 
 func _ready() -> void:
+	add_to_group(get_script().get_global_name().to_snake_case()) # IDK how to convert it to plural, sry
+	#hide()
 	Bus.set_location_enabled.connect(_on_bus_set_location_enabled)
-	icon = SPRITES[type]
+
+
+func _get_points(_path: Array) -> int:
+	return points
+
+
+@warning_ignore("shadowed_variable")
+func lift_fow(view_range := self.view_range) -> void:
+	show()
+	for i in connected_locations:
+		i.show()
+		for j in i.connections:
+			j.show()
+			j.update_gradient()
 
 
 func is_connected_to_location(location: Location) -> bool:
@@ -62,16 +47,13 @@ func get_connection_to_location(location: Location) -> Connection:
 func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
 	if location != self:
 		return
-
-	disabled = not enabled
-	focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
-	if not enabled:
-		release_focus()
+	selectable = enabled
+	icon.modulate = Color.WHITE if enabled else disabled_color
 
 
-func _on_focus_entered() -> void:
+func _on_node_selected() -> void:
 	Bus.location_selected.emit(self)
 
 
-func _on_focus_exited() -> void:
+func _on_node_deselected() -> void:
 	Bus.location_deselected.emit(self)

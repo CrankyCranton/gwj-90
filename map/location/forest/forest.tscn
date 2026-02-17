@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c8w6pmir662x2"]
+
+[ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_el57w"]
+[ext_resource type="Script" uid="uid://nnxjmj8gt7b8" path="res://map/location/forest/forest.gd" id="2_0b8l3"]
+
+[node name="Forest" unique_id=290503295 instance=ExtResource("1_el57w")]
+script = ExtResource("2_0b8l3")
