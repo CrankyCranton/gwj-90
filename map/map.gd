@@ -43,9 +43,7 @@ var grid_size: Vector2i:
 
 func _ready() -> void:
 	generate_locations()
-	await get_tree().process_frame
 	generate_connections()
-	await get_tree().process_frame
 	offset()
 	spawn_characters()
 	turns_left = turns_left # Call setter
@@ -63,8 +61,8 @@ func generate_locations() -> void:
 	for TYPE: PackedScene in locations_distribution:
 		for i in locations_distribution[TYPE]:
 			var location: Location = TYPE.instantiate()
-			location.position_offset = map_to_local(available_cells.pop_back()) - location.size / 2.0
-			add_sibling.call_deferred(location)
+			location.position = map_to_local(available_cells.pop_back()) - location.size / 2.0
+			add_child(location)
 
 
 ## Distance based. Might be changed to adjacency based in the future.
@@ -94,9 +92,9 @@ func generate_connections() -> void:
 
 
 func sort_locations(a: Location, b: Location) -> bool:
-	if absf(b.position_offset.y - a.position_offset.y) <= tile_set.tile_size.y - (random_offset * get_aprox_cell_size()):
-		return a.position_offset.x < b.position_offset.x
-	return a.position_offset.y < b.position_offset.y
+	if absf(b.position.y - a.position.y) <= tile_set.tile_size.y - (random_offset * get_aprox_cell_size()):
+		return a.position.x < b.position.x
+	return a.position.y < b.position.y
 
 
 func create_connection(a: Location, b: Location) -> void:
@@ -104,7 +102,7 @@ func create_connection(a: Location, b: Location) -> void:
 	var connection: Connection = CONNECTION.instantiate()
 	connection.a = a
 	connection.b = b
-	add_sibling.call_deferred(connection)
+	add_child(connection)
 
 	a.connected_locations.append(b)
 	b.connected_locations.append(a)
@@ -114,7 +112,7 @@ func create_connection(a: Location, b: Location) -> void:
 
 func offset() -> void:
 	for location: Location in get_tree().get_nodes_in_group(&"locations"):
-		location.position_offset += Utils.rand_vec2_radial(random_offset * get_aprox_cell_size())
+		location.position += Utils.rand_vec2_radial(random_offset * get_aprox_cell_size())
 	for connection: Connection in get_tree().get_nodes_in_group(&"connections"):
 		connection.update()
 
@@ -129,8 +127,7 @@ func spawn_characters() -> void:
 		#character.offset = character.offset.rotated(float(i) / character_count * TAU)
 		character.path_scored.connect(_on_character_path_scored)
 		character.moved.connect(_on_character_moved)
-		add_sibling.call_deferred(character)
-		await character.ready
+		add_child(character)
 		character.location = inns.pop_back()
 
 
@@ -138,8 +135,8 @@ func get_aprox_cell_size() -> float:
 	return (tile_set.tile_size.x + tile_set.tile_size.y) / 2.0
 
 
-func _on_character_path_scored(_character: Character, loop_score: int) -> void:
-	score += loop_score
+func _on_character_path_scored(_character: Character, path_score: int) -> void:
+	score += path_score
 
 
 func _on_character_moved(_character: Character, _location: Location) -> void:

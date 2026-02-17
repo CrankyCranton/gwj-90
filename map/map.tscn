@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dopyxp6x7wlht" path="res://map/location/temple/temple.tscn" id="15_ta71l"]
 [ext_resource type="PackedScene" uid="uid://byied770bhhqw" path="res://map/location/watchtower/watchtower.tscn" id="16_pi7e5"]
 [ext_resource type="PackedScene" uid="uid://c8w6pmir662x2" path="res://map/location/forest/forest.tscn" id="17_81obp"]
+[ext_resource type="PackedScene" uid="uid://celmqvmenig08" path="res://temp/my_beautiful_ui/my_beautiful_ui.tscn" id="24_81obp"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4hjbm"]
 scenes/1/scene = ExtResource("1_a0dt8")
@@ -56,3 +57,5 @@ characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"),
 
 [node name="CardsManager" parent="." unique_id=756908618 instance=ExtResource("8_kxmgb")]
 editor_description = "Doesn't need to be a child of Map, but it's convenient to create a new deck for every new game."
+
+[node name="MyBeautifulUI" parent="." unique_id=1200815204 instance=ExtResource("24_81obp")]

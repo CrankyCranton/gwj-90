@@ -5,6 +5,3 @@
 [node name="Character2" unique_id=618010067 instance=ExtResource("1_fkh3q")]
 self_modulate = Color(1, 0, 1, 1)
 path_color = Color(1, 0, 1, 1)
-
-[node name="Icon" parent="." index="0" unique_id=964926902]
-modulate = Color(1, 0, 1, 1)

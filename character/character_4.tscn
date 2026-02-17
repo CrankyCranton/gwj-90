@@ -3,7 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/character.tscn" id="1_bb7l5"]
 
 [node name="Character4" unique_id=618010067 instance=ExtResource("1_bb7l5")]
-path_color = Color(1, 0, 0, 1)
-
-[node name="Icon" parent="." index="0" unique_id=964926902]
 modulate = Color(1, 0, 0, 1)
+path_color = Color(1, 0, 0, 1)

@@ -1,4 +1,4 @@
-class_name Location extends GraphElement
+class_name Location extends Button
 
 
 @export var points := 1
@@ -12,9 +12,6 @@ var character: Character = null
 var claim: Character = null
 var connections: Array[Connection]
 var connected_locations: Array[Location]
-
-@onready var icon: TextureRect = $Icon
-@onready var disabled_color := icon.modulate
 
 
 func _ready() -> void:
@@ -66,13 +63,15 @@ func get_connection_to_location(location: Location) -> Connection:
 func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
 	if location != self:
 		return
-	selectable = enabled
-	icon.modulate = Color.WHITE if enabled else disabled_color
+	disabled = not enabled
+	focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
+	if not enabled:
+		release_focus()
 
 
-func _on_node_selected() -> void:
+func _on_focus_entered() -> void:
 	Bus.location_selected.emit(self)
 
 
-func _on_node_deselected() -> void:
+func _on_focus_exited() -> void:
 	Bus.location_deselected.emit(self)

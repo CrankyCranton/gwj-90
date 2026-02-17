@@ -7,14 +7,7 @@
 resource_local_to_scene = true
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
-[node name="Connection" type="GraphElement" unique_id=1926752823 groups=["connections"]]
-offset_right = 40.0
-offset_bottom = 40.0
-draggable = false
-selectable = false
-script = ExtResource("1_knh2s")
-
-[node name="Line" type="Line2D" parent="." unique_id=1176413470]
+[node name="Line" type="Line2D" unique_id=1176413470 groups=["connections"]]
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
 width = 4.0
@@ -23,3 +16,4 @@ gradient = SubResource("Gradient_5kxku")
 texture = ExtResource("2_5kxku")
 texture_mode = 1
 antialiased = true
+script = ExtResource("1_knh2s")

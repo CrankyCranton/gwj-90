@@ -1,4 +1,4 @@
-class_name Character extends GraphElement
+class_name Character extends Button
 
 
 signal moved(character: Character, location: Location)
@@ -22,7 +22,6 @@ var last_location: Location
 var visited_location_types: Array[Script] = []
 var paths: Array[Array] = []
 
-@onready var icon: TextureRect = $Icon
 ## Set this to move the character.
 @onready var location: Location = null:
 	set(value):
@@ -59,8 +58,8 @@ func tween_movement() -> void:
 		tween.kill()
 	tween = create_tween()
 	tween.set_ease(tween_ease).set_trans(tween_transition).tween_property(
-			self, ^"position_offset",
-			location.position_offset + (location.size - size) / 2.0 + offset, tween_time)
+			self, ^"position",
+			location.position + (location.size - size) / 2.0 + offset, tween_time)
 
 
 func score_path() -> void:
@@ -109,11 +108,9 @@ func _on_bus_fetch_valid_character_movement(character: Character,
 	Bus.return_valid_character_movement.emit(self, location.get_valid_locations(valid_location_types))
 
 
-func _on_node_selected() -> void:
-	icon.self_modulate = selected_color
+func _on_focus_entered() -> void:
 	Bus.character_selected.emit(self)
 
 
-func _on_node_deselected() -> void:
-	icon.self_modulate = Color.WHITE
+func _on_focus_exited() -> void:
 	Bus.character_deselected.emit(self)
