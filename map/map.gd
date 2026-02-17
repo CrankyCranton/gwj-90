@@ -71,6 +71,7 @@ func generate_locations() -> void:
 func generate_connections() -> void:
 	var predecessors: Array[Location] = []
 	var sorted_locations := get_tree().get_nodes_in_group(&"locations")
+	sorted_locations.sort_custom(sort_locations)
 	for location: Location in sorted_locations:
 		var nearest_loc: Location = null
 		var nearest_dist := INF
@@ -90,6 +91,12 @@ func generate_connections() -> void:
 			create_connection(location, nearest_loc)
 
 		predecessors.append(location)
+
+
+func sort_locations(a: Location, b: Location) -> bool:
+	if absf(b.position_offset.y - a.position_offset.y) <= tile_set.tile_size.y - (random_offset * get_aprox_cell_size()):
+		return a.position_offset.x < b.position_offset.x
+	return a.position_offset.y < b.position_offset.y
 
 
 func create_connection(a: Location, b: Location) -> void:
