@@ -19,7 +19,8 @@ func init_deck() -> void:
 	discard_pile = []
 
 	for location: Location in get_tree().get_nodes_in_group(&"locations"):
-		deck.append(location.get_script())
+		if not location is Lake:
+			deck.append(location.get_script())
 	deck.shuffle() # Might not be necessary if the locations are already shuffled
 	for i in initial_hand_size:
 		draw_card()
