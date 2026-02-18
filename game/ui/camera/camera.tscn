@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b057kb2aexl5y"]
+
+[ext_resource type="Script" uid="uid://lmayr8e8qq6h" path="res://game/ui/camera/camera.gd" id="1_mfatl"]
+
+[node name="Camera" type="Camera2D" unique_id=2058238658]
+limit_smoothed = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_mfatl")

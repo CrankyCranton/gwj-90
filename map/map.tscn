@@ -21,12 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://dopyxp6x7wlht" path="res://map/location/temple/temple.tscn" id="15_ta71l"]
 [ext_resource type="PackedScene" uid="uid://byied770bhhqw" path="res://map/location/watchtower/watchtower.tscn" id="16_pi7e5"]
 [ext_resource type="PackedScene" uid="uid://c8w6pmir662x2" path="res://map/location/forest/forest.tscn" id="17_81obp"]
+[ext_resource type="PackedScene" uid="uid://b057kb2aexl5y" path="res://game/ui/camera/camera.tscn" id="23_iqbtl"]
 [ext_resource type="PackedScene" uid="uid://celmqvmenig08" path="res://temp/my_beautiful_ui/my_beautiful_ui.tscn" id="24_81obp"]
 
-[node name="Map" type="Control" unique_id=623496437]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
+[node name="Map" type="Node2D" unique_id=248879549]
 script = ExtResource("1_hgrid")
 characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
 locations_distribution = Dictionary[PackedScene, int]({
@@ -48,3 +46,6 @@ ExtResource("16_pi7e5"): 10
 })
 
 [node name="MyBeautifulUI" parent="." unique_id=1200815204 instance=ExtResource("24_81obp")]
+
+[node name="Camera" parent="." unique_id=2058238658 instance=ExtResource("23_iqbtl")]
+position_smoothing_speed = 12.0

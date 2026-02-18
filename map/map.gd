@@ -1,5 +1,5 @@
 # Not going big on the node hierarchy, accessing things by groups.
-class_name Map extends Control
+class_name Map extends Node2D
 
 
 @export var max_turns := 50
@@ -7,13 +7,13 @@ class_name Map extends Control
 @export var max_radius := 2048.0
 @export var min_distance := 64.0
 @export var max_distance := 192.0
-@export var generate_from_rect_center := false
 # I have no idea what this does, so I just exported it and used the demo value
 @export var retries := 30
 @export var character_count := 5
 @export var characters: Array[PackedScene]
 @export var locations_distribution: Dictionary[PackedScene, int] = {}
 
+var map_rect := Rect2i()
 var score := 0:
 	set(value):
 		score = value
@@ -29,6 +29,7 @@ var location_count: int:
 			total += count
 		return total
 
+@onready var camera: Camera = $Camera
 # Must be @onready because of when @export variables are assigned
 @onready var turns_left := max_turns:
 	set(value):
@@ -44,14 +45,18 @@ func _ready() -> void:
 	generate_connections()
 	spawn_characters()
 	CardsManager.init_deck()
+	init_camera()
 	turns_left = turns_left # Call setter
 
 
-## Might be able to be combined with generate_connections() for optimization.
+func init_camera() -> void:
+	camera.position = map_rect.get_center()
+	camera.limits = map_rect
+
+
 func generate_locations() -> void:
-	var pos := size / 2.0 if generate_from_rect_center else Vector2.ZERO
-	var available_points: Array = PoissonDiscSampling.generate_points_for_circle(pos,
-			max_radius, min_distance, 30, Vector2.INF, location_count)
+	var available_points: Array = PoissonDiscSampling.generate_points_for_circle(Vector2.ZERO,
+			max_radius, min_distance, 30, Vector2.ZERO, location_count)
 	available_points.shuffle()
 
 	var i := 0
@@ -60,6 +65,7 @@ func generate_locations() -> void:
 			var location: Location = TYPE.instantiate()
 			location.position = available_points[i] - location.size / 2.0
 			add_child(location)
+			map_rect = map_rect.expand(available_points[i])
 			i += 1
 
 
