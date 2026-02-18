@@ -1,15 +1,18 @@
 # Not going big on the node hierarchy, accessing things by groups.
-class_name Map extends TileMapLayer
+class_name Map extends Control
 
 
 @export var max_turns := 50
 @export_group("Generation")
-@export var locations_distribution: Dictionary[PackedScene, int] = {}
-@export var empty_space := 30
-@export var connect_distance := 1.0
-@export var random_offset := 0.35
+@export var max_radius := 2048.0
+@export var min_distance := 64.0
+@export var max_distance := 256.0
+@export var generate_from_rect_center := false
+# I have no idea what this does, so I just exported it and used the demo value
+@export var retries := 30
 @export var character_count := 5
 @export var characters: Array[PackedScene]
+@export var locations_distribution: Dictionary[PackedScene, int] = {}
 
 var score := 0:
 	set(value):
@@ -25,11 +28,6 @@ var location_count: int:
 		for count: int in locations_distribution.values():
 			total += count
 		return total
-var grid_size: Vector2i:
-	set(_value):
-		pass
-	get:
-		return Vector2i.ONE * ceili(sqrt(location_count + empty_space))
 
 # Must be @onready because of when @export variables are assigned
 @onready var turns_left := max_turns:
@@ -43,57 +41,45 @@ var grid_size: Vector2i:
 func _ready() -> void:
 	generate_locations()
 	generate_connections()
-	offset()
 	spawn_characters()
-	turns_left = turns_left # Call setter
 	CardsManager.init_deck()
+	turns_left = turns_left # Call setter
 
 
 ## Might be able to be combined with generate_connections() for optimization.
 func generate_locations() -> void:
-	var available_cells: Array[Vector2i] = []
-	for y in grid_size.y:
-		for x in grid_size.x:
-			available_cells.append(Vector2i(x, y))
-	available_cells.shuffle()
+	var pos := size / 2.0 if generate_from_rect_center else Vector2.ZERO
+	var available_points := PoissonDiscSampling.generate_points_for_circle(pos,
+			max_radius, min_distance, 30, Vector2.INF, location_count)
 
+	var i := 0
 	for TYPE: PackedScene in locations_distribution:
-		for i in locations_distribution[TYPE]:
+		for j in locations_distribution[TYPE]:
 			var location: Location = TYPE.instantiate()
-			location.position = map_to_local(available_cells.pop_back()) - location.size / 2.0
+			location.position = available_points[i] - location.size / 2.0
 			add_child(location)
+			i += 1
 
 
-## Distance based. Might be changed to adjacency based in the future.
 func generate_connections() -> void:
-	var predecessors: Array[Location] = []
-	var sorted_locations := get_tree().get_nodes_in_group(&"locations")
-	sorted_locations.sort_custom(sort_locations)
-	for location: Location in sorted_locations:
-		var nearest_loc: Location = null
-		var nearest_dist := INF
-		var connections := 0
-		for predecessor in predecessors:
-			var distance := predecessor.position.distance_squared_to(location.position)
-			if nearest_loc == null or distance < nearest_dist:
-				nearest_loc = predecessor
-				nearest_dist = distance
-			if distance <= pow(connect_distance * get_aprox_cell_size(), 2.0):
-				create_connection(location, predecessor)
-				connections += 1
+	var locations: Array[Location] = Array(get_tree().get_nodes_in_group(&"locations"),
+			TYPE_OBJECT, &"Button", preload("uid://kttdtllwq2rh"))
+	var locations_positions: PackedVector2Array = []
+	for location: Location in locations:
+		locations_positions.append(location.position)
 
-		# Make sure there's at least 1 connection.
-		# The null check is for the first location, when there won't be anything to connect to
-		if nearest_loc != null and connections <= 0:
-			create_connection(location, nearest_loc)
-
-		predecessors.append(location)
-
-
-func sort_locations(a: Location, b: Location) -> bool:
-	if absf(b.position.y - a.position.y) <= tile_set.tile_size.y - (random_offset * get_aprox_cell_size()):
-		return a.position.x < b.position.x
-	return a.position.y < b.position.y
+	var indicies := Geometry2D.triangulate_delaunay(locations_positions)
+	print(indicies)
+	const STEP := 3
+	for i in range(0, indicies.size() - (STEP - 1), STEP):
+		print(i)
+		for j in range(i, i + STEP):
+			var connect_index := wrapi(j, i, i + STEP - 2)
+			var from := locations[indicies[j]]
+			var to := locations[indicies[connect_index]]
+			if not from.is_connected_to_location(to) \
+					and from.position.distance_to(to.position) <= max_distance:
+				create_connection(from, to)
 
 
 func create_connection(a: Location, b: Location) -> void:
@@ -108,13 +94,7 @@ func create_connection(a: Location, b: Location) -> void:
 	b.connected_locations.append(a)
 	a.connections.append(connection)
 	b.connections.append(connection)
-
-
-func offset() -> void:
-	for location: Location in get_tree().get_nodes_in_group(&"locations"):
-		location.position += Utils.rand_vec2_radial(random_offset * get_aprox_cell_size())
-	for connection: Connection in get_tree().get_nodes_in_group(&"connections"):
-		connection.update()
+	connection.update()
 
 
 func spawn_characters() -> void:
@@ -129,10 +109,6 @@ func spawn_characters() -> void:
 		character.moved.connect(_on_character_moved)
 		add_child(character)
 		character.location = inns.pop_back()
-
-
-func get_aprox_cell_size() -> float:
-	return (tile_set.tile_size.x + tile_set.tile_size.y) / 2.0
 
 
 func _on_character_path_scored(_character: Character, path_score: int) -> void:

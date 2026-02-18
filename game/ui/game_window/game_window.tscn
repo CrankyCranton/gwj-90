@@ -28,8 +28,4 @@ draggable = false
 selectable = false
 
 [node name="Map" parent="GraphEdit/GraphElement" index="0" unique_id=1864008392 instance=ExtResource("2_qii18")]
-max_turns = 50
-empty_space = 30
-connect_distance = 1.0
-random_offset = 0.35
-character_count = 5
+layout_mode = 2

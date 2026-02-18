@@ -22,8 +22,8 @@ func _ready() -> void:
 	if not icons_lookup.has(get_script()):
 		icons_lookup[get_script()] = icon
 	add_to_group(get_script().get_global_name().to_snake_case()) # IDK how to convert it to plural, sry
-	hide()
 	Bus.set_location_enabled.connect(_on_bus_set_location_enabled)
+	#hide()
 
 
 func _get_points(_path: Array) -> int:

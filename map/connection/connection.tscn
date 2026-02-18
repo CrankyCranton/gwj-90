@@ -7,8 +7,7 @@
 resource_local_to_scene = true
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
-[node name="Line" type="Line2D" unique_id=1176413470 groups=["connections"]]
-visible = false
+[node name="Connection" type="Line2D" unique_id=1176413470 groups=["connections"]]
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
 width = 4.0
