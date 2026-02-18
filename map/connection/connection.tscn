@@ -5,7 +5,7 @@
 
 [sub_resource type="Gradient" id="Gradient_5kxku"]
 resource_local_to_scene = true
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+colors = PackedColorArray(1, 1, 1, 0.5019608, 1, 1, 1, 0.5019608)
 
 [node name="Connection" type="Line2D" unique_id=1176413470 groups=["connections"]]
 texture_repeat = 2

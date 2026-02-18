@@ -6,7 +6,7 @@ class_name Map extends Control
 @export_group("Generation")
 @export var max_radius := 2048.0
 @export var min_distance := 64.0
-@export var max_distance := 256.0
+@export var max_distance := 192.0
 @export var generate_from_rect_center := false
 # I have no idea what this does, so I just exported it and used the demo value
 @export var retries := 30
@@ -70,20 +70,19 @@ func generate_connections() -> void:
 		locations_positions.append(location.position)
 
 	var indicies := Geometry2D.triangulate_delaunay(locations_positions)
-	print(indicies)
 	const STEP := 3
 	for i in range(0, indicies.size() - (STEP - 1), STEP):
-		print(i)
 		for j in range(i, i + STEP):
-			var connect_index := wrapi(j, i, i + STEP - 2)
+			var connect_index := wrapi(j + 1, i, i + STEP)
 			var from := locations[indicies[j]]
 			var to := locations[indicies[connect_index]]
-			if not from.is_connected_to_location(to) \
-					and from.position.distance_to(to.position) <= max_distance:
+			if from.position.distance_to(to.position) <= max_distance \
+					and not from.is_connected_to_location(to):
 				create_connection(from, to)
 
 
 func create_connection(a: Location, b: Location) -> void:
+	assert(a != b)
 	const CONNECTION := preload("res://map/connection/connection.tscn")
 	var connection: Connection = CONNECTION.instantiate()
 	connection.a = a
