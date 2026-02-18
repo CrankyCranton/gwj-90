@@ -74,10 +74,15 @@ func _on_bus_total_score_changed(score: int) -> void:
 
 
 func _on_bus_turns_left_changed(turns: int) -> void:
-	turns_left.text = str(turns)
+	turns_left.text = "Turns Left: " + str(turns)
 
 
 func _on_my_beautiful_card_focus_entered(card: Button) -> void:
 	selected_card = card
 	if selected_character != null:
 		fetch_valid_spots()
+
+
+func _on_my_beautiful_skip_button_pressed() -> void:
+	Bus.draw_card.emit()
+	Bus.take_turn.emit()

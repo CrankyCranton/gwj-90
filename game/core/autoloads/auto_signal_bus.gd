@@ -5,6 +5,7 @@ signal card_gained(type: Script)
 signal card_burnt(index: int)
 signal card_perma_burnt(index: int)
 signal use_card(index: int)
+signal draw_card
 signal deck_size_changed(deck_size: int)
 signal discard_pile_size_changed(discard_pile_size: int)
 
@@ -23,6 +24,7 @@ signal path_scored(character: Character, path_score: int)
 signal character_unfinished_path_score_changed(character: Character, path_score: int)
 signal total_score_changed(score: int)
 signal turns_left_changed(turns: int)
+signal take_turn
 # Ignore 'won' if the game doesn't end immediately when the player reaches the required score
 signal won
 signal ended(score: int)

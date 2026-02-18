@@ -55,6 +55,7 @@ var paths: Array[Array] = [[]]
 		location.lift_fow()
 		if last_location: # Redundant
 			moved.emit(self, location)
+			Bus.take_turn.emit()
 
 
 func _ready() -> void:

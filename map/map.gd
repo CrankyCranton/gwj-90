@@ -39,6 +39,7 @@ var location_count: int:
 
 
 func _ready() -> void:
+	Bus.take_turn.connect(_on_bus_take_turn)
 	generate_locations()
 	generate_connections()
 	spawn_characters()
@@ -106,7 +107,6 @@ func spawn_characters() -> void:
 		var character: Character = characters[i].instantiate()
 		#character.offset = character.offset.rotated(float(i) / character_count * TAU)
 		character.path_scored.connect(_on_character_path_scored)
-		character.moved.connect(_on_character_moved)
 		add_child(character)
 		character.location = inns.pop_back()
 
@@ -115,5 +115,5 @@ func _on_character_path_scored(_character: Character, path_score: int) -> void:
 	score += path_score
 
 
-func _on_character_moved(_character: Character, _location: Location) -> void:
+func _on_bus_take_turn() -> void:
 	turns_left -= 1

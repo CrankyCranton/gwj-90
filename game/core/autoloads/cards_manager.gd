@@ -10,6 +10,7 @@ var discard_pile: Array[Script] = []
 
 func _ready() -> void:
 	Bus.use_card.connect(burn_card)
+	Bus.draw_card.connect(draw_card)
 
 
 func init_deck() -> void:

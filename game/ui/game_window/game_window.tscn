@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rqfjuu0k5g1k" path="res://map/map.tscn" id="2_qii18"]
 
 [node name="GameWindow" unique_id=1575267630 instance=ExtResource("1_gonab")]
+mouse_filter = 2
 script = null
 
 [node name="GraphEdit" type="GraphEdit" parent="." index="0" unique_id=796142121]

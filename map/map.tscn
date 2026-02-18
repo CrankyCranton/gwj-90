@@ -25,13 +25,8 @@
 
 [node name="Map" type="Control" unique_id=623496437]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 31911.0
-offset_bottom = 25959.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_hgrid")
 characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
 locations_distribution = Dictionary[PackedScene, int]({
