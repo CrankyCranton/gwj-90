@@ -32,7 +32,6 @@ func fetch_valid_spots() -> void:
 
 
 func _on_bus_card_gained(type: Script) -> void:
-	assert(type != null)
 	var card: MyBeautifulCard = preload("uid://cy6q1636h15ej").instantiate()
 	card.type = type
 	card.focus_entered.connect(_on_my_beautiful_card_focus_entered.bind(card))
@@ -41,7 +40,7 @@ func _on_bus_card_gained(type: Script) -> void:
 
 
 func _on_bus_card_burnt(index: int) -> void:
-	card_holder.get_child(index).queue_free()
+	card_holder.get_child(index).free()
 
 
 func _on_bus_deck_size_changed(deck_size: int) -> void:
@@ -64,8 +63,8 @@ func _on_bus_character_selected(character: Character) -> void:
 
 
 func _on_bus_location_selected(location: Location) -> void:
-	Bus.use_card.emit(selected_card.get_index())
 	Bus.move_character.emit(selected_character, location)
+	Bus.use_card.emit(selected_card.get_index())
 
 
 @warning_ignore("shadowed_variable")
@@ -74,15 +73,10 @@ func _on_bus_total_score_changed(score: int) -> void:
 
 
 func _on_bus_turns_left_changed(turns: int) -> void:
-	turns_left.text = "Turns Left: " + str(turns)
+	turns_left.text = str(turns)
 
 
 func _on_my_beautiful_card_focus_entered(card: Button) -> void:
 	selected_card = card
 	if selected_character != null:
 		fetch_valid_spots()
-
-
-func _on_my_beautiful_skip_button_pressed() -> void:
-	Bus.draw_card.emit()
-	Bus.take_turn.emit()

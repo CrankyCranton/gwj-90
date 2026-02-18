@@ -50,8 +50,9 @@ func _ready() -> void:
 ## Might be able to be combined with generate_connections() for optimization.
 func generate_locations() -> void:
 	var pos := size / 2.0 if generate_from_rect_center else Vector2.ZERO
-	var available_points := PoissonDiscSampling.generate_points_for_circle(pos,
+	var available_points: Array = PoissonDiscSampling.generate_points_for_circle(pos,
 			max_radius, min_distance, 30, Vector2.INF, location_count)
+	available_points.shuffle()
 
 	var i := 0
 	for TYPE: PackedScene in locations_distribution:

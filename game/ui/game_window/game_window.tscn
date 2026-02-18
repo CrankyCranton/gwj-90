@@ -23,10 +23,12 @@ show_arrange_button = false
 
 [node name="GraphElement" type="GraphElement" parent="GraphEdit" index="1" unique_id=1457228139]
 layout_mode = 0
-offset_right = 6890.0
-offset_bottom = 5152.0
+offset_right = 2048.0
+offset_bottom = 2048.0
 draggable = false
 selectable = false
 
 [node name="Map" parent="GraphEdit/GraphElement" index="0" unique_id=1864008392 instance=ExtResource("2_qii18")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
