@@ -63,8 +63,8 @@ func _on_bus_character_selected(character: Character) -> void:
 
 
 func _on_bus_location_selected(location: Location) -> void:
-	Bus.move_character.emit(selected_character, location)
 	Bus.use_card.emit(selected_card.get_index())
+	Bus.move_character.emit(selected_character, location)
 
 
 @warning_ignore("shadowed_variable")
@@ -73,10 +73,15 @@ func _on_bus_total_score_changed(score: int) -> void:
 
 
 func _on_bus_turns_left_changed(turns: int) -> void:
-	turns_left.text = str(turns)
+	turns_left.text = "Turns Left: " + str(turns)
 
 
 func _on_my_beautiful_card_focus_entered(card: Button) -> void:
 	selected_card = card
 	if selected_character != null:
 		fetch_valid_spots()
+
+
+func _on_my_beautiful_skip_button_pressed() -> void:
+	Bus.draw_card.emit()
+	Bus.take_turn.emit()
