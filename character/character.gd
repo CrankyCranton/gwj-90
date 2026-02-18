@@ -26,32 +26,35 @@ var paths: Array[Array] = [[]]
 @onready var location: Location = null:
 	set(value):
 		assert(value != null)
-		if value is Inn:
+
+		var last_location := location
+		location = value
+
+		location.character = self
+
+		if last_location != null:
+			if tracing: # Redundant
+				last_location.get_connection_to_location(location).character = self
+			last_location.character = null
+			location._draw_card()
+
+		if location is Inn:
 			tracing = true
-		elif value is Camp:
+		if tracing:
+			location.claim = self
+			paths.back().append(location)
+
+		if location is Camp:
 			score_path()
 		else:
 			var score := get_path_score(-1)
 			unfinished_path_score_changed.emit(self, score)
 			Bus.character_unfinished_path_score_changed.emit(self, score)
 
-		if location:
-			if tracing:
-				location.get_connection_to_location(value).character = self
-			location.character = null
-			moved.emit(self, value)
-			value._draw_card()
-
-		# NOTICE location is only assigned to value at this point.
-		# In the code above this, "location" is the old location.
-		location = value
-		location.character = self
-		if tracing: # Redundant
-			location.claim = self
-			paths.back().append(location)
-
 		tween_movement()
 		location.lift_fow()
+		if last_location: # Redundant
+			moved.emit(self, location)
 
 
 func _ready() -> void:

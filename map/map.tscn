@@ -37,26 +37,22 @@ tile_set = SubResource("TileSet_a0dt8")
 script = ExtResource("1_hgrid")
 max_turns = null
 locations_distribution = Dictionary[PackedScene, int]({
+ExtResource("9_de6fw"): 10,
 ExtResource("3_iqbtl"): 10,
-ExtResource("4_81obp"): 10,
-ExtResource("5_gw5x3"): 10,
+ExtResource("16_pi7e5"): 10,
 ExtResource("6_wwcqt"): 10,
 ExtResource("7_ofiht"): 10,
-ExtResource("8_05mli"): 10,
-ExtResource("9_de6fw"): 10,
-ExtResource("10_kb5w5"): 10,
 ExtResource("11_rqrn2"): 10,
+ExtResource("8_05mli"): 10,
+ExtResource("10_kb5w5"): 10,
+ExtResource("4_81obp"): 10,
+ExtResource("5_gw5x3"): 10,
+ExtResource("17_81obp"): 10,
 ExtResource("12_7ho10"): 10,
 ExtResource("13_xq7gd"): 10,
 ExtResource("14_3akue"): 10,
-ExtResource("15_ta71l"): 10,
-ExtResource("16_pi7e5"): 10,
-ExtResource("17_81obp"): 10
+ExtResource("15_ta71l"): 10
 })
-empty_space = null
-connect_distance = null
-random_offset = null
-character_count = null
 characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
 
 [node name="MyBeautifulUI" parent="." unique_id=1200815204 instance=ExtResource("24_81obp")]

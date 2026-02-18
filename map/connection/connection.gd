@@ -14,6 +14,7 @@ var b: Location
 		character = value
 		default_color = character.path_color if character else original_color
 		width = selected_width if character else original_width
+		update_gradient()
 
 
 func update() -> void:

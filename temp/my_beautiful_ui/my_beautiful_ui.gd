@@ -32,6 +32,7 @@ func fetch_valid_spots() -> void:
 
 
 func _on_bus_card_gained(type: Script) -> void:
+	assert(type != null)
 	var card: MyBeautifulCard = preload("uid://cy6q1636h15ej").instantiate()
 	card.type = type
 	card.focus_entered.connect(_on_my_beautiful_card_focus_entered.bind(card))
@@ -63,8 +64,8 @@ func _on_bus_character_selected(character: Character) -> void:
 
 
 func _on_bus_location_selected(location: Location) -> void:
-	Bus.move_character.emit(selected_character, location)
 	Bus.use_card.emit(selected_card.get_index())
+	Bus.move_character.emit(selected_character, location)
 
 
 @warning_ignore("shadowed_variable")
