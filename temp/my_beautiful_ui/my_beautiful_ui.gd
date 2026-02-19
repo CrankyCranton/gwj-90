@@ -3,6 +3,7 @@ class_name MyBeautifulUI extends CanvasLayer
 
 var selected_character: PlayerCharacter = null
 var selected_card: MyBeautifulCard = null
+var target_score := 0
 
 @onready var card_holder: HBoxContainer = %CardHolder
 @onready var score: Label = %Score
@@ -13,6 +14,7 @@ var selected_card: MyBeautifulCard = null
 
 
 func _ready() -> void:
+	Bus.target_score_set.connect(func(value: int) -> void: target_score = value; _on_bus_total_score_changed(0))
 	Bus.card_burnt.connect(_on_bus_card_burnt)
 	Bus.card_perma_burnt.connect(_on_bus_card_burnt)
 	Bus.turn_taken.connect(fetch_valid_spots)
@@ -78,7 +80,7 @@ func _on_bus_location_selected(location: Location) -> void:
 
 @warning_ignore("shadowed_variable")
 func _on_bus_total_score_changed(score: int) -> void:
-	self.score.text = "Score: " + str(score)
+	self.score.text = "Score: " + str(score) + "/" + str(target_score)
 
 
 func _on_bus_turns_left_changed(turns: int) -> void:

@@ -14,6 +14,7 @@ signal fetch_valid_character_movement(character: PlayerCharacter, valid_location
 signal return_valid_character_movement(character: PlayerCharacter, locations: Array[Location])
 signal bandit_added
 signal bandit_removed
+signal add_bandit
 
 signal character_selected(character: PlayerCharacter)
 signal character_deselected(character: PlayerCharacter)
@@ -25,6 +26,7 @@ signal set_location_enabled(location: Location, enabled: bool)
 signal path_scored(character: PlayerCharacter, path_score: int)
 signal character_unfinished_path_score_changed(character: Character, path_score: int)
 signal total_score_changed(score: int)
+signal target_score_set(target_score: int)
 signal turns_left_changed(turns: int)
 signal take_turn
 signal turn_taken

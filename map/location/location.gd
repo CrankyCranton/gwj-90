@@ -1,6 +1,8 @@
 class_name Location extends Button
 
 
+signal activated
+
 static var icons_lookup: Dictionary[Script, Texture2D] = {
 	null: preload("uid://c57cnquykwost"),
 }
@@ -32,6 +34,7 @@ func _get_points(_path: Array) -> int:
 func _activate() -> void:
 	if character is PlayerCharacter:
 		lift_fow()
+		activated.emit()
 
 
 func _draw_card() -> void:

@@ -2,7 +2,7 @@
 class_name Map extends Node2D
 
 
-@export var max_turns := 50
+@export var max_turns := 25
 @export_group("Generation")
 @export var max_radius := 2048.0
 @export var min_distance := 64.0
@@ -42,6 +42,7 @@ var location_count: int:
 
 
 func _ready() -> void:
+	Bus.add_bandit.connect(add_bandit)
 	Bus.take_turn.connect(_on_bus_take_turn)
 	generate_locations()
 	generate_connections()
@@ -50,6 +51,7 @@ func _ready() -> void:
 	CardsManager.init_deck()
 	init_camera()
 	turns_left = turns_left # Call setter
+	Bus.target_score_set.emit(location_count)
 
 
 func init_camera() -> void:
@@ -140,7 +142,7 @@ func _on_character_path_scored(_character: Character, path_score: int) -> void:
 
 func _on_bus_take_turn() -> void:
 	turns_left -= 1
-	get_tree().call_group(&"bandits", &"random_walk")
+	get_tree().get_nodes_in_group(&"bandits").pick_random().random_walk()
 	if (max_turns - turns_left) % bandit_add_interval == 0:
 		add_bandit()
 	Bus.turn_taken.emit()

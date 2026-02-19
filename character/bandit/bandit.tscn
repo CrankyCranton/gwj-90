@@ -3,10 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_gmytg"]
 [ext_resource type="Script" uid="uid://djjtfcu5weasg" path="res://character/bandit/bandit.gd" id="2_gun8i"]
 
+[sub_resource type="Theme" id="Theme_gun8i"]
+TooltipLabel/font_sizes/font_size = 32
+
 [node name="Bandit" type="TextureRect" unique_id=357962153 groups=["bandits"]]
 offset_right = 136.0
 offset_bottom = 136.0
 scale = Vector2(0.3, 0.3)
+theme = SubResource("Theme_gun8i")
 texture = ExtResource("1_gmytg")
 script = ExtResource("2_gun8i")
 can_walk_on_path = true

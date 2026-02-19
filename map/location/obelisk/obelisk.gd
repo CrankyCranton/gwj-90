@@ -7,7 +7,6 @@ class_name Obelisk extends Location
 
 
 func _activate() -> void:
-	super()
 	if not character is PlayerCharacter:
 		return
 	var inns := get_tree().get_nodes_in_group(&"inn").filter(
@@ -15,3 +14,4 @@ func _activate() -> void:
 	if inns.size() > 0:
 		character.clear_path()
 		character.set_location(inns.pick_random())
+	super()
