@@ -30,8 +30,8 @@ func _get_points(_path: Array) -> int:
 
 
 func _activate() -> void:
-	#if character is PlayerCharacter:
-	lift_fow()
+	if character is PlayerCharacter:
+		lift_fow()
 
 
 func _draw_card() -> void:

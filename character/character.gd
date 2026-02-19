@@ -7,7 +7,7 @@ signal moved(character: Character, location: Location)
 @export var can_walk_on_path := false
 @export var can_walk_on_enemies := false
 @export_group("Tween", "tween")
-@export var tween_time := 0.2
+@export var tween_time := 0.5
 @export var tween_transition := Tween.TRANS_SINE
 @export var tween_ease := Tween.EASE_IN_OUT
 
