@@ -13,5 +13,11 @@ disabled = true
 icon = ExtResource("2_24pgi")
 script = ExtResource("1_ds6n1")
 
+[node name="PointsCounter" type="Label" parent="." unique_id=1877521428]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 48
+
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

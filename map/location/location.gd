@@ -17,6 +17,8 @@ var claim: Character = null
 var connections: Array[Connection]
 var connected_locations: Array[Location]
 
+@onready var points_counter: Label = $PointsCounter
+
 
 func _ready() -> void:
 	if not icons_lookup.has(get_script()):
@@ -32,6 +34,13 @@ func _get_points(_path: Array) -> int:
 
 func _draw_card() -> void:
 	CardsManager.draw_card()
+
+
+func update_points_counter(path: Array, x2 := false) -> void:
+	var displayed_points := _get_points(path)
+	if x2:
+		displayed_points *= 2
+	points_counter.text = str(displayed_points)
 
 
 @warning_ignore("shadowed_variable")

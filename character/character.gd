@@ -48,6 +48,8 @@ var connections: Array[Connection] = []
 		if tracing:
 			location.claim = self
 			paths.back().append(location)
+			for l: Location in paths.back():
+				l.update_points_counter(paths.back())
 
 		if location is Camp:
 			score_path()
@@ -79,6 +81,9 @@ func tween_movement() -> void:
 
 func score_path() -> void:
 	var score := get_path_score(-1) * 2
+	@warning_ignore("shadowed_variable")
+	for location: Location in paths.back():
+		location.update_points_counter(paths.back(), true)
 	for connection in connections:
 		connection.set_completed()
 	connections.clear()
