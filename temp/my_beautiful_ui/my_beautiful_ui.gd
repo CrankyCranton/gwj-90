@@ -26,8 +26,8 @@ func _ready() -> void:
 
 func fetch_valid_spots() -> void:
 	# Ideally cards should store their type instead of looking it up by icon, but it's throw-away code
-	var types: Array[Script] = []
-	types.append(selected_card.type)
+	var types: Array[Script] = [null]
+	#types.append(selected_card.type)
 	Bus.fetch_valid_character_movement.emit(selected_character, types)
 
 
@@ -58,8 +58,8 @@ func _on_bus_return_valid_character_movement(_character: Character, locations: A
 
 func _on_bus_character_selected(character: Character) -> void:
 	selected_character = character
-	if selected_card != null:
-		fetch_valid_spots()
+	#if selected_card != null:
+	fetch_valid_spots()
 
 
 func _on_bus_location_selected(location: Location) -> void:
