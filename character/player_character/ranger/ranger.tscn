@@ -7,3 +7,4 @@
 self_modulate = Color(1, 0, 1, 1)
 tooltip_text = "Ranger: +1 view range."
 script = ExtResource("2_x2gfs")
+view_bonus = 1

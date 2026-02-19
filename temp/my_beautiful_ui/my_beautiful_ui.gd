@@ -28,7 +28,6 @@ func _ready() -> void:
 	Bus.turns_left_changed.connect(_on_bus_turns_left_changed)
 	Bus.bandit_added.connect(_on_bus_bandits_changed)
 	Bus.bandit_removed.connect(_on_bus_bandits_changed)
-	Bus.won.connect(get_tree().set.bind(&"paused", true))
 
 
 func fetch_valid_spots() -> void:
@@ -85,6 +84,8 @@ func _on_bus_total_score_changed(score: int) -> void:
 
 func _on_bus_turns_left_changed(turns: int) -> void:
 	turns_left.text = "Turns Left: " + str(turns)
+	if turns <= 0:
+		get_tree().paused = true
 
 
 func _on_my_beautiful_card_focus_entered(card: Button) -> void:

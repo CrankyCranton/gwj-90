@@ -34,15 +34,15 @@ func set_location(new_location: Location) -> void:
 		for l: Location in paths.back().locations:
 			l.update_points_counter(paths.back().locations)
 
+	if new_location.character and new_location.character is Bandit:
+		new_location.character.die()
+
 	if new_location is Camp:
 		score_path()
 	else:
 		var score := get_path_score(-1)
 		unfinished_path_score_changed.emit(self, score)
 		Bus.character_unfinished_path_score_changed.emit(self, score)
-
-	if new_location.character is Bandit:
-		new_location.character.die()
 
 	super(new_location)
 	if last_location != null:
