@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://2gvfecquivde" path="res://map/location/cave/cave.gd" id="2_714vk"]
 
 [node name="Cave" unique_id=290503295 instance=ExtResource("1_r42aw")]
+tooltip_text = "4. View range -1 from here."
 icon = ExtResource("2_2lbi5")
 script = ExtResource("2_714vk")
 points = 4

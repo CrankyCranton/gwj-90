@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csqrddx66cemg" path="res://temp/PNG/Tiles/Terrain/Stone/stone_16.png" id="2_f1ctu"]
 
 [node name="Fountain" unique_id=290503295 instance=ExtResource("1_b6l26")]
+tooltip_text = "2. +1 for every Fountain on this path."
 icon = ExtResource("2_f1ctu")
 script = ExtResource("2_bjw52")
 points = 2

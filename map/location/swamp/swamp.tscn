@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ig032a0qpxpl" path="res://map/location/swamp/swamp.gd" id="2_uhm5n"]
 
 [node name="Swamp" unique_id=290503295 instance=ExtResource("1_brtnp")]
+tooltip_text = "6. -6 if this path has atleast 5 locations."
 icon = ExtResource("2_gufhr")
 script = ExtResource("2_uhm5n")
 points = 6

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ddto6qnwiirmi" path="res://temp/PNG/Objects/rockGrey_medium2.png" id="2_j7cnc"]
 
 [node name="Obelisk" unique_id=290503295 instance=ExtResource("1_3e2mq")]
+tooltip_text = "2. Gain 1 for every 3 locations on this path."
 icon = ExtResource("2_j7cnc")
 script = ExtResource("2_2yx77")
 points = 2

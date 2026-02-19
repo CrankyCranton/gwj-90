@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://buajyntxrmlo0" path="res://map/location/hill/hill.gd" id="2_rrs4h"]
 
 [node name="Hill" unique_id=290503295 instance=ExtResource("1_uwg2f")]
+tooltip_text = "2. Move to any adjacent location using  any 1 card."
 icon = ExtResource("2_md88r")
 script = ExtResource("2_rrs4h")
 points = 2

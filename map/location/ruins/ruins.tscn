@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6h4qk8cmmcse" path="res://temp/PNG/Tiles/Medieval/medieval_ruins.png" id="2_suwv3"]
 
 [node name="Ruins" unique_id=290503295 instance=ExtResource("1_3jyhp")]
+tooltip_text = "4. Lose 1 for every 3 locations on this path."
 icon = ExtResource("2_suwv3")
 script = ExtResource("2_sro34")
 points = 4

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b67lt5vq5no5q" path="res://temp/PNG/Tiles/Medieval/medieval_tower.png" id="2_4keo1"]
 
 [node name="Watchtower" unique_id=290503295 instance=ExtResource("1_01ih8")]
+tooltip_text = "2. View range +1 from here."
 icon = ExtResource("2_4keo1")
 script = ExtResource("2_2n21l")
 points = 2
