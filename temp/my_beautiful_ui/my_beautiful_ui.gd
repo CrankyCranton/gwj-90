@@ -1,7 +1,7 @@
 class_name MyBeautifulUI extends CanvasLayer
 
 
-var selected_character: Character = null
+var selected_character: PlayerCharacter = null
 var selected_card: MyBeautifulCard = null
 
 @onready var card_holder: HBoxContainer = %CardHolder
@@ -9,11 +9,13 @@ var selected_card: MyBeautifulCard = null
 @onready var turns_left: Label = %TurnsLeft
 @onready var discard_pile: Label = %DiscardPile
 @onready var deck: Label = %Deck
+@onready var bandits: Label = $%Bandits
 
 
 func _ready() -> void:
 	Bus.card_burnt.connect(_on_bus_card_burnt)
 	Bus.card_perma_burnt.connect(_on_bus_card_burnt)
+	Bus.turn_taken.connect(fetch_valid_spots)
 	Bus.card_gained.connect(_on_bus_card_gained)
 	Bus.deck_size_changed.connect(_on_bus_deck_size_changed)
 	Bus.discard_pile_size_changed.connect(_on_bus_discard_pile_size_changed)
@@ -22,6 +24,9 @@ func _ready() -> void:
 	Bus.location_selected.connect(_on_bus_location_selected)
 	Bus.total_score_changed.connect(_on_bus_total_score_changed)
 	Bus.turns_left_changed.connect(_on_bus_turns_left_changed)
+	Bus.bandit_added.connect(_on_bus_bandits_changed)
+	Bus.bandit_removed.connect(_on_bus_bandits_changed)
+	Bus.won.connect(get_tree().set.bind(&"paused", true))
 
 
 func fetch_valid_spots() -> void:
@@ -29,6 +34,10 @@ func fetch_valid_spots() -> void:
 	var types: Array[Script] = [null]
 	#types.append(selected_card.type)
 	Bus.fetch_valid_character_movement.emit(selected_character, types)
+
+
+func _on_bus_bandits_changed() -> void:
+	bandits.text = "Bandits: " + str(Bandit.bandits)
 
 
 func _on_bus_card_gained(type: Script) -> void:
@@ -51,7 +60,7 @@ func _on_bus_discard_pile_size_changed(discard_pile_size: int) -> void:
 	discard_pile.text = "Discard Pile: " + str(discard_pile_size)
 
 
-func _on_bus_return_valid_character_movement(_character: Character, locations: Array[Location]) -> void:
+func _on_bus_return_valid_character_movement(_character: PlayerCharacter, locations: Array[Location]) -> void:
 	for location: Location in get_tree().get_nodes_in_group(&"locations"):
 		Bus.set_location_enabled.emit(location, location in locations)
 

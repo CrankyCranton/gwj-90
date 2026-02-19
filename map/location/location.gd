@@ -7,15 +7,12 @@ static var icons_lookup: Dictionary[Script, Texture2D] = {
 
 @export var points := 1
 @export var view_range := 1
-@export_group("Movement")
-@export var can_retravel_connections := false
-@export var can_move_onto_other_character := false
-@export var can_revisit_location := false
 
 var character: Character = null
-var claim: Character = null
+var claim: PlayerCharacter = null
 var connections: Array[Connection]
 var connected_locations: Array[Location]
+var finished := false
 
 @onready var points_counter: Label = $PointsCounter
 
@@ -33,6 +30,7 @@ func _get_points(_path: Array) -> int:
 
 
 func _activate() -> void:
+	#if character is PlayerCharacter:
 	lift_fow()
 
 
@@ -64,23 +62,6 @@ func lift_fow(on := self, view_range := self.view_range) -> void:
 			j.update_gradient()
 		if view_range >= 0:
 			lift_fow(i, view_range)
-
-
-# Made input argument "valid_types" an array, in case it needs to display the
-# valid locations for all the card types you have in hand.
-## Null is a wildcard.
-func get_valid_locations(valid_types: Array[Script] = []) -> Array[Location]:
-	@warning_ignore("shadowed_variable")
-	return connected_locations.filter(
-		func(location: Location) -> bool:
-			# Might be about time to split this bad boy into a multi-liner
-			return  (self is Hill or location is Lake or valid_types.has(null) \
-					or location.get_script() in valid_types) \
-					and (can_move_onto_other_character or location.character == null) \
-					and (can_revisit_location or location.claim == null) \
-					and (can_retravel_connections or
-					get_connection_to_location(location).character == null)
-	)
 
 
 func is_connected_to_location(location: Location) -> bool:

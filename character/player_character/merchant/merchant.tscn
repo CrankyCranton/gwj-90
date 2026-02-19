@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://2cw54hrfip75"]
+
+[ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_4hgbd"]
+[ext_resource type="Script" uid="uid://cl0bbskpxe8mk" path="res://character/player_character/merchant/merchant.gd" id="2_akss2"]
+
+[node name="Merchant" unique_id=618010067 instance=ExtResource("1_4hgbd")]
+self_modulate = Color(1, 1, 0, 1)
+tooltip_text = "Merchant: +2 path score for every consecutive location pair of the same type."
+script = ExtResource("2_akss2")

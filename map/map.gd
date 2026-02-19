@@ -9,6 +9,8 @@ class_name Map extends Node2D
 @export var max_distance := 192.0
 # I have no idea what this does, so I just exported it and used the demo value
 @export var retries := 30
+@export var bandit_count := 3
+@export var bandit_add_interval := 5
 @export var character_count := 5
 @export var characters: Array[PackedScene]
 @export var locations_distribution: Dictionary[PackedScene, int] = {}
@@ -44,6 +46,7 @@ func _ready() -> void:
 	generate_locations()
 	generate_connections()
 	spawn_characters()
+	spawn_bandits()
 	CardsManager.init_deck()
 	init_camera()
 	turns_left = turns_left # Call setter
@@ -110,11 +113,25 @@ func spawn_characters() -> void:
 	characters.shuffle()
 	assert(character_count <= characters.size())
 	for i in character_count:
-		var character: Character = characters[i].instantiate()
+		var character: PlayerCharacter = characters[i].instantiate()
 		#character.offset = character.offset.rotated(float(i) / character_count * TAU)
 		character.path_scored.connect(_on_character_path_scored)
 		add_child(character)
-		character.location = inns.pop_back()
+		character.set_location(inns.pop_back())
+
+
+func spawn_bandits() -> void:
+	for i in bandit_count:
+		add_bandit()
+
+
+func add_bandit() -> void:
+	var bandit: Bandit = preload("res://character/bandit/bandit.tscn").instantiate()
+	add_child(bandit)
+	var spawn_locations := get_tree().get_nodes_in_group(&"obelisk").filter(
+			func(obelisk: Obelisk) -> bool: return obelisk.character == null)
+	if spawn_locations.size() > 0:
+		bandit.set_location(spawn_locations.pick_random())
 
 
 func _on_character_path_scored(_character: Character, path_score: int) -> void:
@@ -123,3 +140,7 @@ func _on_character_path_scored(_character: Character, path_score: int) -> void:
 
 func _on_bus_take_turn() -> void:
 	turns_left -= 1
+	get_tree().call_group(&"bandits", &"random_walk")
+	if (max_turns - turns_left) % bandit_add_interval == 0:
+		add_bandit()
+	Bus.turn_taken.emit()

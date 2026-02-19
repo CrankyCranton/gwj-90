@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://crtks2lenqgk5"]
+
+[ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_ai8bj"]
+[ext_resource type="Script" uid="uid://cktb7el0pvy88" path="res://character/player_character/monk/monk.gd" id="2_txasu"]
+
+[node name="Monk" unique_id=618010067 instance=ExtResource("1_ai8bj")]
+modulate = Color(1, 0, 0, 1)
+tooltip_text = "Monk: When you end a path, teleport to a random active start location, if available."
+script = ExtResource("2_txasu")

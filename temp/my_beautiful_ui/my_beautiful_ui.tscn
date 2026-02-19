@@ -36,8 +36,18 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Turns Left: "
 
+[node name="Bandits" type="Label" parent="." unique_id=1050554554]
+unique_name_in_owner = true
+offset_left = 1728.0
+offset_top = 134.0
+offset_right = 1862.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 32
+text = "Bandits: "
+
 [node name="DiscardPile" type="Label" parent="." unique_id=1041918962]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -50,6 +60,7 @@ text = "Discard Pile: 0"
 
 [node name="Deck" type="Label" parent="." unique_id=779538771]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -64,6 +75,7 @@ theme_override_font_sizes/font_size = 32
 text = "Deck: "
 
 [node name="MyBeautifulSkipButton" type="Button" parent="." unique_id=1792552050]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

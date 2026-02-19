@@ -11,5 +11,5 @@ class_name Ruins extends Location
 
 func _activate() -> void:
 	super()
-	if randf() <= abort_chance:
+	if randf() <= abort_chance and character is PlayerCharacter:
 		character.clear_path()

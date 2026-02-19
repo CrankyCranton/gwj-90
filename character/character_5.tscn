@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://21njw0pq8biw"]
-
-[ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/character.tscn" id="1_qajw2"]
-
-[node name="Character5" unique_id=618010067 instance=ExtResource("1_qajw2")]
-self_modulate = Color(0, 0, 1, 1)
-path_color = Color(0, 0, 1, 1)
