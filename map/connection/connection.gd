@@ -2,6 +2,7 @@ class_name Connection extends Line2D
 
 
 @export var selected_width := 8.0
+@export var finished_width := 6.0
 
 # TODO Store as an array
 var a: Location
@@ -25,3 +26,9 @@ func update() -> void:
 func update_gradient() -> void:
 	gradient.set_color(0, default_color if a.visible else Color.TRANSPARENT)
 	gradient.set_color(1, default_color if b.visible else Color.TRANSPARENT)
+
+
+func set_completed() -> void:
+	default_color.s /= 3.0
+	width = finished_width
+	update_gradient()

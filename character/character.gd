@@ -20,6 +20,8 @@ signal unfinished_path_score_changed(character: Character, path_score: int)
 var tween: Tween
 var tracing := false
 var paths: Array[Array] = [[]]
+# FIXME Messy
+var connections: Array[Connection] = []
 
 # TODO Put most of movement handling in location.gd
 ## Set this to move the character.
@@ -33,8 +35,11 @@ var paths: Array[Array] = [[]]
 		location.character = self
 
 		if last_location != null:
-			if tracing: # Redundant
-				last_location.get_connection_to_location(location).character = self
+			if tracing:
+				var connection := last_location.get_connection_to_location(location)
+				connections.append(connection)
+				connection.character = self
+
 			last_location.character = null
 			location._draw_card()
 
@@ -74,6 +79,9 @@ func tween_movement() -> void:
 
 func score_path() -> void:
 	var score := get_path_score(-1) * 2
+	for connection in connections:
+		connection.set_completed()
+	connections.clear()
 	paths.append([])
 	tracing = false
 	Bus.path_scored.emit(self, score)
