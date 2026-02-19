@@ -19,9 +19,7 @@ signal unfinished_path_score_changed(character: Character, path_score: int)
 
 var tween: Tween
 var tracing := false
-var paths: Array[Array] = [[]]
-# FIXME Messy
-var connections: Array[Connection] = []
+var paths: Array[Dictionary] = [{"locations": [], "connections": []}]
 
 # TODO Put most of movement handling in location.gd
 ## Set this to move the character.
@@ -35,9 +33,9 @@ var connections: Array[Connection] = []
 		location.character = self
 
 		if last_location != null:
-			if tracing:
-				var connection := last_location.get_connection_to_location(location)
-				connections.append(connection)
+			var connection := last_location.get_connection_to_location(location)
+			if tracing and connection:
+				paths.back().connections.append(connection)
 				connection.character = self
 
 			last_location.character = null
@@ -47,9 +45,9 @@ var connections: Array[Connection] = []
 			tracing = true
 		if tracing:
 			location.claim = self
-			paths.back().append(location)
-			for l: Location in paths.back():
-				l.update_points_counter(paths.back())
+			paths.back().locations.append(location)
+			for l: Location in paths.back().locations:
+				l.update_points_counter(paths.back().locations)
 
 		if location is Camp:
 			score_path()
@@ -59,8 +57,8 @@ var connections: Array[Connection] = []
 			Bus.character_unfinished_path_score_changed.emit(self, score)
 
 		tween_movement()
-		location.lift_fow()
-		if last_location: # Redundant
+		location._activate()
+		if last_location != null: # Redundant
 			moved.emit(self, location)
 			Bus.take_turn.emit()
 
@@ -68,6 +66,17 @@ var connections: Array[Connection] = []
 func _ready() -> void:
 	Bus.move_character.connect(_on_bus_move_character)
 	Bus.fetch_valid_character_movement.connect(_on_bus_fetch_valid_character_movement)
+
+
+func clear_path() -> void:
+	tracing = false
+	for l: Location in paths.back().locations:
+		l.claim = null
+		l.update_points_counter([])
+	for c: Connection in paths.back().connections:
+		c.character = null
+	paths.back().locations = []
+	paths.back().connections = []
 
 
 func tween_movement() -> void:
@@ -82,12 +91,11 @@ func tween_movement() -> void:
 func score_path() -> void:
 	var score := get_path_score(-1) * 2
 	@warning_ignore("shadowed_variable")
-	for location: Location in paths.back():
-		location.update_points_counter(paths.back(), true)
-	for connection in connections:
+	for location: Location in paths.back().locations:
+		location.update_points_counter(paths.back().locations, true)
+	for connection: Connection in paths.back().connections:
 		connection.set_completed()
-	connections.clear()
-	paths.append([])
+	paths.append({"locations": [], "connections": []})
 	tracing = false
 	Bus.path_scored.emit(self, score)
 	path_scored.emit(self, score)
@@ -95,8 +103,8 @@ func score_path() -> void:
 
 func get_path_score(index: int) -> int:
 	var score := 0
-	for l: Location in paths[index]:
-		score += l._get_points(paths[index])
+	for l: Location in paths[index].locations:
+		score += l._get_points(paths[index].locations)
 	return score
 
 

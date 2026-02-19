@@ -32,11 +32,22 @@ func _get_points(_path: Array) -> int:
 	return points
 
 
+func _activate() -> void:
+	lift_fow()
+
+
 func _draw_card() -> void:
 	CardsManager.draw_card()
 
 
+func clear_path() -> void:
+	pass
+
+
 func update_points_counter(path: Array, x2 := false) -> void:
+	if path == []:
+		points_counter.text = ""
+		return
 	var displayed_points := _get_points(path)
 	if x2:
 		displayed_points *= 2

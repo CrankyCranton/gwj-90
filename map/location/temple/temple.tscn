@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dxwbxwmvblmv4" path="res://map/location/temple/temple.gd" id="2_jyeow"]
 
 [node name="Temple" unique_id=290503295 instance=ExtResource("1_xyccu")]
-tooltip_text = "1. When you enter, gain a location wildcard. (This card is only obtained here. Not present in Draw Pile)"
+tooltip_text = "0. +1 for each location before this on this path."
 icon = ExtResource("2_hhbpi")
 script = ExtResource("2_jyeow")
+points = 0
