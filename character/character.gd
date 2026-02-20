@@ -1,8 +1,6 @@
 class_name Character extends Control
 
 
-signal moved(character: Character, location: Location)
-
 @export var offset := Vector2(16.0, 24.0)
 @export var can_walk_on_path := false
 @export var can_walk_on_enemies := false
@@ -25,16 +23,17 @@ func set_location(value: Location) -> void:
 	assert(value != null)
 	var last_location := location
 	location = value
-	location.character = self
-	location._activate()
-	visible = location.visible
+
 	var target_position := location.position + (location.size - size) / 2.0 + offset
 	if last_location != null:
 		last_location.character = null
-		moved.emit(self, location)
-		tween_movement(target_position)
+		create_tween().tween_property(self, ^"modulate",
+				Color.WHITE if location.visible else Color.TRANSPARENT, tween_time)
+		await tween_movement(target_position)
 	else:
 		position = target_position
+
+	location.character = self
 
 
 func tween_movement(target: Vector2) -> void:
@@ -44,6 +43,7 @@ func tween_movement(target: Vector2) -> void:
 	tween.set_ease(tween_ease).set_trans(tween_transition).tween_property(
 			self, ^"position",
 			target, tween_time)
+	await tween.finished
 
 
 # Made input argument "valid_types" an array, in case it needs to display the

@@ -28,8 +28,7 @@ signal character_unfinished_path_score_changed(character: Character, path_score:
 signal total_score_changed(score: int)
 signal target_score_set(target_score: int)
 signal turns_left_changed(turns: int)
-signal take_turn
-signal turn_taken
+signal turn_finished
 # Ignore 'won' if the game doesn't end immediately when the player reaches the required score
 signal won
 signal ended(score: int)

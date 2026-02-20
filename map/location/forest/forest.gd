@@ -1,7 +1,10 @@
 class_name Forest extends Location
 
 
-func _draw_card() -> void:
+#func _draw_card() -> void:
 	#CardsManager.burn_card(0)
+	#super()
+
+func _activate() -> void:
 	Bus.add_bandit.emit()
 	super()

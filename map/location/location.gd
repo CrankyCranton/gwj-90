@@ -32,9 +32,8 @@ func _get_points(_path: Array) -> int:
 
 
 func _activate() -> void:
-	if character is PlayerCharacter:
-		lift_fow()
-		activated.emit()
+	lift_fow()
+	activated.emit()
 
 
 func _draw_card() -> void:
@@ -78,13 +77,17 @@ func get_connection_to_location(location: Location) -> Connection:
 	return null
 
 
-func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
-	if location != self:
-		return
+func set_enabled(enabled: bool) -> void:
 	disabled = not enabled
 	focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
 	if not enabled:
 		release_focus()
+
+
+func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
+	if location != self:
+		return
+	set_enabled(enabled)
 
 
 func _on_focus_entered() -> void:

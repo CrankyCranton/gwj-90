@@ -5,8 +5,8 @@ class_name Map extends Node2D
 @export var max_turns := 25
 @export_group("Generation")
 @export var max_radius := 2048.0
-@export var min_distance := 64.0
-@export var max_distance := 192.0
+@export var min_distance := 80.0
+@export var max_distance := 240.0
 # I have no idea what this does, so I just exported it and used the demo value
 @export var retries := 30
 @export var bandit_count := 3
@@ -43,7 +43,6 @@ var location_count: int:
 
 func _ready() -> void:
 	Bus.add_bandit.connect(add_bandit)
-	Bus.take_turn.connect(_on_bus_take_turn)
 	generate_locations()
 	generate_connections()
 	spawn_characters()
@@ -118,6 +117,7 @@ func spawn_characters() -> void:
 		var character: PlayerCharacter = characters[i].instantiate()
 		#character.offset = character.offset.rotated(float(i) / character_count * TAU)
 		character.path_scored.connect(_on_character_path_scored)
+		character.moved.connect(_on_character_moved)
 		add_child(character)
 		character.set_location(inns.pop_back())
 
@@ -140,9 +140,16 @@ func _on_character_path_scored(_character: Character, path_score: int) -> void:
 	score += path_score
 
 
-func _on_bus_take_turn() -> void:
+func _on_character_moved(_character: PlayerCharacter) -> void:
 	turns_left -= 1
-	get_tree().get_nodes_in_group(&"bandits").pick_random().random_walk()
+	# I'm probably using these filter and lambda functions way too much
+	var bandits := get_tree().get_nodes_in_group(&"bandits").filter(
+			func(bandit: Bandit) -> bool: return not bandit.just_added)
+	print(bandits.size())
+	if bandits.size() > 0:
+		await bandits.pick_random().random_walk()
+
 	if (max_turns - turns_left) % bandit_add_interval == 0:
 		add_bandit()
-	Bus.turn_taken.emit()
+	print("Turn taken")
+	Bus.turn_finished.emit()

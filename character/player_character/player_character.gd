@@ -3,6 +3,7 @@ class_name PlayerCharacter extends Character
 
 signal path_scored(character: PlayerCharacter, path_score: int)
 signal unfinished_path_score_changed(character: PlayerCharacter, path_score: int)
+signal moved(character: PlayerCharacter)
 
 @export var path_color := Color()
 @export var selected_color := Color.WHITE
@@ -17,6 +18,7 @@ var paths: Array[Dictionary] = [{"locations": [], "connections": []}]
 
 func set_location(new_location: Location) -> void:
 	var last_location := location
+	await super(new_location)
 
 	if last_location != null:
 		var connection := last_location.get_connection_to_location(new_location)
@@ -44,9 +46,9 @@ func set_location(new_location: Location) -> void:
 		unfinished_path_score_changed.emit(self, score)
 		Bus.character_unfinished_path_score_changed.emit(self, score)
 
-	super(new_location)
+	location._activate()
 	if last_location != null:
-		Bus.take_turn.emit()
+		moved.emit(self)
 
 
 func clear_path() -> void:
