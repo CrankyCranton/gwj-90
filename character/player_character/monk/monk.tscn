@@ -8,3 +8,6 @@ self_modulate = Color(0, 0, 1, 1)
 tooltip_text = "Monk
 +2 to each location type visited earlier on the path."
 script = ExtResource("2_b7ox4")
+
+[node name="PointsCounter" parent="." index="0" unique_id=2122050771]
+visible = true

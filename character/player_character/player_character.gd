@@ -15,10 +15,30 @@ signal moved(character: PlayerCharacter)
 var tracing := false
 var paths: Array[Dictionary] = [{"locations": [], "connections": []}]
 
+@onready var points_counter: Label = $PointsCounter
+@onready var points := 0:
+	set(value):
+		points = value
+		points_counter.text = str(points)
+
+
+func _update_character_score() -> void:
+	pass
+
 
 func set_location(new_location: Location) -> void:
 	var last_location := location
-	await super(new_location)
+	await move_and_trace(new_location)
+	_update_character_score()
+	await activate_and_score(new_location)
+
+	if last_location != null:
+		moved.emit(self)
+
+
+func move_and_trace(new_location: Location) -> void:
+	var last_location := location
+	await super.set_location(new_location)
 
 	if last_location != null:
 		var connection := last_location.get_connection_to_location(new_location)
@@ -36,19 +56,21 @@ func set_location(new_location: Location) -> void:
 		for l: Location in paths.back().locations:
 			l.update_points_counter(paths.back().locations)
 
+
+func activate_and_score(new_location: Location) -> void:
 	if new_location.character and new_location.character is Bandit:
 		new_location.character.die()
 
 	if new_location is Camp:
+		@warning_ignore("redundant_await")
 		await score_path()
 	else:
 		var score := get_path_score(-1)
 		unfinished_path_score_changed.emit(self, score)
 		Bus.character_unfinished_path_score_changed.emit(self, score)
 
+	@warning_ignore("redundant_await")
 	await location._activate()
-	if last_location != null:
-		moved.emit(self)
 
 
 func clear_path() -> void:
@@ -66,11 +88,12 @@ func get_path_score(index: int) -> int:
 	var score := 0
 	for l: Location in paths[index].locations:
 		score += l._get_points(paths[index].locations)
-	return score
+	return score + points
 
 
 func score_path() -> void:
 	var score := get_path_score(-1) * 2
+	points *= 2
 	@warning_ignore("shadowed_variable_base_class")
 	for location: Location in paths.back().locations:
 		location.update_points_counter(paths.back().locations, true)
