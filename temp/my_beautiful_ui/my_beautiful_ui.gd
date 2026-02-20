@@ -44,9 +44,10 @@ func _on_bus_character_selected(character: Character) -> void:
 
 
 func _on_bus_location_selected(location: Location) -> void:
-	awaiting_turn = true
-	get_tree().call_group(&"locations", &"set_enabled", false)
-	Bus.move_character.emit(selected_character, location)
+	if not awaiting_turn:
+		awaiting_turn = true
+		get_tree().call_group(&"locations", &"set_enabled", false)
+		Bus.move_character.emit(selected_character, location)
 
 
 func _on_bus_bandits_changed() -> void:

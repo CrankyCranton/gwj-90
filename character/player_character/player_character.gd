@@ -17,17 +17,18 @@ var paths: Array[Dictionary] = [{"locations": [], "connections": []}]
 var just_killed := false
 
 
+func _ready() -> void:
+	super()
+	Bus.move_character.connect(_on_bus_move_character)
+
+
 func _get_bonus(_new_location: Location) -> int:
 	return 0
 
 
 func set_location(new_location: Location) -> void:
-	var last_location := location
 	await move_and_trace(new_location)
 	await activate_and_score(new_location)
-
-	if last_location != null:
-		moved.emit(self)
 
 
 func move_and_trace(new_location: Location) -> void:
@@ -74,6 +75,7 @@ func clear_path() -> void:
 	tracing = false
 	for l: Location in paths.back().locations:
 		l.claim = null
+		l.bonus = 0
 		l.update_points_counter([])
 	for c: Connection in paths.back().connections:
 		c.character = null
@@ -109,6 +111,16 @@ func filter_character_connections(connection: Connection) -> bool:
 @warning_ignore("shadowed_variable_base_class")
 func filter_character_locations(location: Location) -> bool:
 	return location.claim == self
+
+
+@warning_ignore("shadowed_variable_base_class")
+func _on_bus_move_character(character: PlayerCharacter, location: Location) -> void:
+	if character != self:
+		return
+	assert(location in self.location.connected_locations)
+
+	await set_location(location)
+	moved.emit(self)
 
 
 func _on_focus_entered() -> void:

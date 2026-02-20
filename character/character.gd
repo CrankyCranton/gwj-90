@@ -15,7 +15,6 @@ var tween: Tween
 
 
 func _ready() -> void:
-	Bus.move_character.connect(_on_bus_move_character)
 	Bus.fetch_valid_character_movement.connect(_on_bus_fetch_valid_character_movement)
 
 
@@ -61,15 +60,6 @@ func get_valid_locations(valid_types: Array[Script] = []) -> Array[Location]:
 					or (location.claim == null \
 					and self.location.get_connection_to_location(location).character == null)) \
 	)
-
-
-@warning_ignore("shadowed_variable")
-func _on_bus_move_character(character: Character, location: Location) -> void:
-	if character != self:
-		return
-	assert(location in self.location.connected_locations)
-
-	set_location(location)
 
 
 func _on_bus_fetch_valid_character_movement(character: Character,
