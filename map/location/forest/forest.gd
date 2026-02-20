@@ -6,5 +6,5 @@ class_name Forest extends Location
 	#super()
 
 func _activate() -> void:
-	Bus.add_bandit.emit()
 	super()
+	Bus.add_bandit.emit()

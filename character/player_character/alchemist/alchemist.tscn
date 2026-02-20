@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://21njw0pq8biw"]
+[gd_scene format=3 uid="uid://crtks2lenqgk5"]
 
-[ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_beqf0"]
-[ext_resource type="Script" uid="uid://dlxsumbw35ub4" path="res://character/player_character/alchemist/alchemist.gd" id="2_bqhmn"]
+[ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_0epk3"]
+[ext_resource type="Script" uid="uid://cktb7el0pvy88" path="res://character/player_character/alchemist/alchemist.gd" id="2_6rsex"]
 
-[node name="Alchemist" unique_id=618010067 groups=["characters"] instance=ExtResource("1_beqf0")]
-self_modulate = Color(0, 0, 1, 1)
-tooltip_text = "Alchemist: When you move, discard the leftmost card and draw another."
-script = ExtResource("2_bqhmn")
+[node name="Alchemist" unique_id=618010067 instance=ExtResource("1_0epk3")]
+modulate = Color(1, 0, 0, 1)
+tooltip_text = "Alchemist
+Upon path completion, teleport to a random open Inn, if available."
+script = ExtResource("2_6rsex")

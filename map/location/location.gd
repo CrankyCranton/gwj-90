@@ -20,10 +20,10 @@ var finished := false
 
 
 func _ready() -> void:
-	var prefix := ""
+	var prefix := "\n"
 	if points > 0:
-		prefix = "+"
-	tooltip_text = prefix + str(points) + "\n" + tooltip_text
+		prefix += "+"
+	tooltip_text = get_script().get_global_name() + prefix + str(points) + "\n" + tooltip_text
 
 	if not icons_lookup.has(get_script()):
 		icons_lookup[get_script()] = icon

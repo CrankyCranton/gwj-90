@@ -5,5 +5,6 @@
 
 [node name="Fighter" unique_id=618010067 instance=ExtResource("1_ym11r")]
 self_modulate = Color(0, 1, 1, 1)
-tooltip_text = "Fighter: +1 path score for every 3 locations on a path."
+tooltip_text = "Fighter
++3 to the location you move into with a Bandit."
 script = ExtResource("2_5lp1x")
