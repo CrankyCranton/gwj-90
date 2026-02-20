@@ -1,9 +1,10 @@
 class_name Monk extends PlayerCharacter
 
 
-func _update_character_score() -> void:
-	var types: Array[Script] = []
-	for l: Location in paths.back().locations:
-		if not types.has(l.get_script()):
-			types.append(l.get_script())
-	points = types.size() * 2
+func _get_bonus(new_location: Location) -> int:
+	var locations_list: Array = paths.back().locations.duplicate()
+	locations_list.erase(new_location)
+	for l: Location in locations_list:
+		if l.get_script() == new_location.get_script():
+			return 2
+	return 0

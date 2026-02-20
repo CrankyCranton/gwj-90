@@ -10,6 +10,7 @@ static var icons_lookup: Dictionary[Script, Texture2D] = {
 @export var points := 1
 @export var view_range := 1
 
+var bonus := 0
 var character: Character = null
 var claim: PlayerCharacter = null
 var connections: Array[Connection]
@@ -53,7 +54,7 @@ func update_points_counter(path: Array, x2 := false) -> void:
 	if path == []:
 		points_counter.text = ""
 		return
-	var displayed_points := _get_points(path)
+	var displayed_points := _get_points(path) + bonus
 	if x2:
 		displayed_points *= 2
 	points_counter.text = str(displayed_points)
@@ -101,3 +102,8 @@ func _on_focus_entered() -> void:
 
 func _on_focus_exited() -> void:
 	Bus.location_deselected.emit(self)
+
+
+func _on_visibility_changed() -> void:
+	if character and character is Bandit:
+		character.update_visible(visible)

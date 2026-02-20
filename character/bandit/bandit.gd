@@ -21,8 +21,7 @@ func random_walk() -> void:
 
 
 func set_location(value: Location) -> void:
-	create_tween().tween_property(self, ^"self_modulate",
-			Color.WHITE if value.visible else Color.TRANSPARENT, tween_time)
+	update_visible(value.visible)
 	await super(value)
 	if location.claim != null and not location.finished:
 		location.claim.clear_path()
@@ -32,6 +31,11 @@ func die() -> void:
 	bandits -= 1
 	Bus.bandit_removed.emit()
 	queue_free()
+
+
+func update_visible(value: bool) -> void:
+	create_tween().tween_property(self, ^"self_modulate",
+			Color.WHITE if value else Color.TRANSPARENT, tween_time)
 
 
 func _on_bus_turn_finished() -> void:

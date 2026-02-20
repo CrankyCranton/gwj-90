@@ -8,6 +8,3 @@ self_modulate = Color(1, 1, 0, 1)
 tooltip_text = "Merchant
 +3 to every 5th location on a path."
 script = ExtResource("2_akss2")
-
-[node name="PointsCounter" parent="." index="0" unique_id=2122050771]
-visible = true

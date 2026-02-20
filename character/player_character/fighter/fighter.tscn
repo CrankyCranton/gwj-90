@@ -8,6 +8,3 @@ self_modulate = Color(0, 1, 1, 1)
 tooltip_text = "Fighter
 +3 to the location you move into with a Bandit."
 script = ExtResource("2_5lp1x")
-
-[node name="PointsCounter" parent="." index="0" unique_id=2122050771]
-visible = true
