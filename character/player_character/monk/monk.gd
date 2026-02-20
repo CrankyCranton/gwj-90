@@ -9,4 +9,4 @@ func score_path() -> void:
 	var inns := get_tree().get_nodes_in_group(&"inn").filter(
 			func(inn: Inn) -> bool: return inn.claim == null and inn.character == null)
 	if inns.size() > 0:
-		set_location(inns.pick_random())
+		await set_location(inns.pick_random())

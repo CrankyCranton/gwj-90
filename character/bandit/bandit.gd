@@ -8,7 +8,7 @@ var just_added := true
 
 func _ready() -> void:
 	super()
-	modulate = Color.TRANSPARENT
+	self_modulate = Color.TRANSPARENT
 	bandits += 1
 	Bus.bandit_added.emit()
 	Bus.turn_finished.connect(_on_bus_turn_finished)
@@ -21,6 +21,8 @@ func random_walk() -> void:
 
 
 func set_location(value: Location) -> void:
+	create_tween().tween_property(self, ^"self_modulate",
+			Color.WHITE if value.visible else Color.TRANSPARENT, tween_time)
 	await super(value)
 	if location.claim != null and not location.finished:
 		location.claim.clear_path()

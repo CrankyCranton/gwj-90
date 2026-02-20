@@ -40,13 +40,13 @@ func set_location(new_location: Location) -> void:
 		new_location.character.die()
 
 	if new_location is Camp:
-		score_path()
+		await score_path()
 	else:
 		var score := get_path_score(-1)
 		unfinished_path_score_changed.emit(self, score)
 		Bus.character_unfinished_path_score_changed.emit(self, score)
 
-	location._activate()
+	await location._activate()
 	if last_location != null:
 		moved.emit(self)
 

@@ -11,5 +11,5 @@ func _activate() -> void:
 			func(inn: Inn) -> bool: return inn.claim == null and inn.character == null)
 	if inns.size() > 0:
 		character.clear_path()
-		character.set_location(inns.pick_random())
+		await character.set_location(inns.pick_random())
 	super()

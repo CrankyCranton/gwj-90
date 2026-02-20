@@ -27,8 +27,6 @@ func set_location(value: Location) -> void:
 	var target_position := location.position + (location.size - size) / 2.0 + offset
 	if last_location != null:
 		last_location.character = null
-		create_tween().tween_property(self, ^"modulate",
-				Color.WHITE if location.visible else Color.TRANSPARENT, tween_time)
 		await tween_movement(target_position)
 	else:
 		position = target_position
