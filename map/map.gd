@@ -144,7 +144,7 @@ func _on_character_moved(_character: PlayerCharacter) -> void:
 	turns_left -= 1
 	# I'm probably using these filter and lambda functions way too much
 	var bandits := get_tree().get_nodes_in_group(&"bandits").filter(
-			func(bandit: Bandit) -> bool: return not bandit.just_added)
+			func(bandit: Bandit) -> bool: return not (bandit.just_added or bandit.is_queued_for_deletion()))
 	if bandits.size() > 0:
 		await bandits.pick_random().random_walk()
 
