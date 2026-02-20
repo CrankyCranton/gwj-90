@@ -20,6 +20,11 @@ var finished := false
 
 
 func _ready() -> void:
+	var prefix := ""
+	if points > 0:
+		prefix = "+"
+	tooltip_text = prefix + str(points) + "\n" + tooltip_text
+
 	if not icons_lookup.has(get_script()):
 		icons_lookup[get_script()] = icon
 	add_to_group(get_script().get_global_name().to_snake_case()) # IDK how to convert it to plural, sry

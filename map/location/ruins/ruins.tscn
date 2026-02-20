@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c6h4qk8cmmcse" path="res://temp/PNG/Tiles/Medieval/medieval_ruins.png" id="2_suwv3"]
 
 [node name="Ruins" unique_id=290503295 instance=ExtResource("1_3jyhp")]
-tooltip_text = "0. 75% chance: +6. 25% chance: Path aborted."
+tooltip_text = "75% chance: +6. 25% chance: Path aborted."
 icon = ExtResource("2_suwv3")
 script = ExtResource("2_sro34")
 abort_chance = 0.25
-points = 6
+points = 0

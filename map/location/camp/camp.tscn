@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cti666pp7khap" path="res://temp/PNG/Tiles/Modern/modern_campsite.png" id="2_oll34"]
 
 [node name="Camp" unique_id=290503295 instance=ExtResource("1_a6ryb")]
-tooltip_text = "3. Path end location."
+tooltip_text = "Path end location."
 icon = ExtResource("2_oll34")
 script = ExtResource("2_2lili")
 points = 3

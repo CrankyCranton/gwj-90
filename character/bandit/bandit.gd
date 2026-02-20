@@ -7,7 +7,6 @@ var just_added := true
 
 
 func _ready() -> void:
-	print("Just added")
 	super()
 	modulate = Color.TRANSPARENT
 	bandits += 1

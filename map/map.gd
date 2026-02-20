@@ -145,11 +145,9 @@ func _on_character_moved(_character: PlayerCharacter) -> void:
 	# I'm probably using these filter and lambda functions way too much
 	var bandits := get_tree().get_nodes_in_group(&"bandits").filter(
 			func(bandit: Bandit) -> bool: return not bandit.just_added)
-	print(bandits.size())
 	if bandits.size() > 0:
 		await bandits.pick_random().random_walk()
 
 	if (max_turns - turns_left) % bandit_add_interval == 0:
 		add_bandit()
-	print("Turn taken")
 	Bus.turn_finished.emit()

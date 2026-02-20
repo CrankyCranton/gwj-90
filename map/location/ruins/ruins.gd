@@ -4,7 +4,8 @@ class_name Ruins extends Location
 @export var abort_chance := 0.25
 
 
-#func _get_points(path: Array) -> int:
+func _get_points(_path: Array) -> int:
+	return 6
 	#@warning_ignore("integer_division")
 	#return points - path.size() / 3
 

@@ -5,6 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://y7kr88gsdvme" path="res://temp/tileWater_tile.png" id="2_e0ek3"]
 
 [node name="Lake" unique_id=290503295 instance=ExtResource("1_g4hur")]
-tooltip_text = "1. +1 for every 3 locations on this path."
+tooltip_text = "+1 for every 3 locations on this path."
 icon = ExtResource("2_e0ek3")
 script = ExtResource("2_1a0vk")
