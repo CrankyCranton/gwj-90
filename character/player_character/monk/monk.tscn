@@ -6,5 +6,5 @@
 [node name="Monk" unique_id=618010067 groups=["characters"] instance=ExtResource("1_gsc7k")]
 self_modulate = Color(0, 0, 1, 1)
 tooltip_text = "Monk
-+2 to a location, if the same type has been visited before on this path."
++4 to a location, if the same type has been visited before on this path."
 script = ExtResource("2_b7ox4")

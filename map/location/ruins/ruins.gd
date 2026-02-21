@@ -5,7 +5,7 @@ class_name Ruins extends Location
 
 
 func _get_points(_path: Array) -> int:
-	return 6
+	return 8
 	#@warning_ignore("integer_division")
 	#return points - path.size() / 3
 

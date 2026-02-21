@@ -6,4 +6,4 @@ class_name Ranger extends PlayerCharacter
 
 func set_location(new_location: Location) -> void:
 	new_location.view_range += view_bonus
-	super(new_location)
+	await super(new_location)

@@ -6,5 +6,5 @@ func _get_bonus(new_location: Location) -> int:
 	locations_list.erase(new_location)
 	for l: Location in locations_list:
 		if l.get_script() == new_location.get_script():
-			return 2
+			return 4
 	return 0

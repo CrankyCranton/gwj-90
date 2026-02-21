@@ -2,7 +2,8 @@
 class_name Map extends Node2D
 
 
-@export var max_turns := 25
+@export var max_turns := 50
+@export var target_scaler := 2.0
 @export_group("Generation")
 @export var max_radius := 2048.0
 @export var min_distance := 80.0
@@ -20,7 +21,7 @@ var score := 0:
 	set(value):
 		score = value
 		Bus.total_score_changed.emit(score)
-		if score >= location_count:
+		if score >= location_count * target_scaler:
 			Bus.won.emit()
 var location_count: int:
 	set(_value):
@@ -50,7 +51,7 @@ func _ready() -> void:
 	CardsManager.init_deck()
 	init_camera()
 	turns_left = turns_left # Call setter
-	Bus.target_score_set.emit(location_count)
+	Bus.target_score_set.emit(location_count * target_scaler)
 
 
 func init_camera() -> void:
@@ -145,8 +146,11 @@ func _on_character_moved(_character: PlayerCharacter) -> void:
 	# I'm probably using these filter and lambda functions way too much
 	var bandits := get_tree().get_nodes_in_group(&"bandits").filter(
 			func(bandit: Bandit) -> bool: return not (bandit.just_added or bandit.is_queued_for_deletion()))
-	if bandits.size() > 0:
-		await bandits.pick_random().random_walk()
+	for bandit: Bandit in bandits:
+		if bandit == bandits.back():
+			await bandit.random_walk()
+		else:
+			bandit.random_walk()
 
 	if (max_turns - turns_left) % bandit_add_interval == 0:
 		add_bandit()

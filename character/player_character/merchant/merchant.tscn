@@ -6,5 +6,5 @@
 [node name="Merchant" unique_id=618010067 instance=ExtResource("1_4hgbd")]
 self_modulate = Color(1, 1, 0, 1)
 tooltip_text = "Merchant
-+3 to every 5th location on a path."
++8 to every 5th location on a path."
 script = ExtResource("2_akss2")

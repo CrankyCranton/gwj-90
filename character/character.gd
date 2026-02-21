@@ -22,6 +22,7 @@ func set_location(value: Location) -> void:
 	assert(value != null)
 	var last_location := location
 	location = value
+	location.character = self
 
 	var target_position := location.position + (location.size - size) / 2.0 + offset
 	if last_location != null:
@@ -29,8 +30,6 @@ func set_location(value: Location) -> void:
 		await tween_movement(target_position)
 	else:
 		position = target_position
-
-	location.character = self
 
 
 func tween_movement(target: Vector2) -> void:
