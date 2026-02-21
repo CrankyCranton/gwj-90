@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://rqfjuu0k5g1k"]
 
 [ext_resource type="Script" uid="uid://c8rxkq4fqdd7w" path="res://map/map.gd" id="1_hgrid"]
-[ext_resource type="PackedScene" uid="uid://36mf1n7to20n" path="res://character/player_character/fighter/fighter.tscn" id="3_5jdw0"]
 [ext_resource type="PackedScene" uid="uid://d378nvm41nw8n" path="res://map/location/camp/camp.tscn" id="3_iqbtl"]
-[ext_resource type="PackedScene" uid="uid://beyeceda17j7b" path="res://character/player_character/ranger/ranger.tscn" id="4_kxmgb"]
 [ext_resource type="PackedScene" uid="uid://2cw54hrfip75" path="res://character/player_character/merchant/merchant.tscn" id="5_e8e5r"]
-[ext_resource type="PackedScene" uid="uid://crtks2lenqgk5" path="res://character/player_character/alchemist/alchemist.tscn" id="6_112ik"]
-[ext_resource type="PackedScene" uid="uid://21njw0pq8biw" path="res://character/player_character/monk/monk.tscn" id="7_i5grx"]
 [ext_resource type="PackedScene" uid="uid://bt10wa310i4sx" path="res://map/location/hill/hill.tscn" id="8_05mli"]
 [ext_resource type="PackedScene" uid="uid://cko6dr3rhic4k" path="res://map/location/inn/inn.tscn" id="9_de6fw"]
 [ext_resource type="PackedScene" uid="uid://dxcv3vhw0j3ot" path="res://map/location/lake/lake.tscn" id="10_kb5w5"]
@@ -20,7 +16,7 @@ max_turns = 9999999999
 bandit_count = 0
 bandit_add_interval = 99999999999
 character_count = 1
-characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
+characters = Array[PackedScene]([ExtResource("5_e8e5r")])
 locations_distribution = Dictionary[PackedScene, int]({
 ExtResource("3_iqbtl"): 10,
 ExtResource("8_05mli"): 10,
