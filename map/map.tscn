@@ -3,45 +3,29 @@
 [ext_resource type="Script" uid="uid://c8rxkq4fqdd7w" path="res://map/map.gd" id="1_hgrid"]
 [ext_resource type="PackedScene" uid="uid://36mf1n7to20n" path="res://character/player_character/fighter/fighter.tscn" id="3_5jdw0"]
 [ext_resource type="PackedScene" uid="uid://d378nvm41nw8n" path="res://map/location/camp/camp.tscn" id="3_iqbtl"]
-[ext_resource type="PackedScene" uid="uid://duvwhsx0vyiii" path="res://map/location/castle/castle.tscn" id="4_81obp"]
 [ext_resource type="PackedScene" uid="uid://beyeceda17j7b" path="res://character/player_character/ranger/ranger.tscn" id="4_kxmgb"]
 [ext_resource type="PackedScene" uid="uid://2cw54hrfip75" path="res://character/player_character/merchant/merchant.tscn" id="5_e8e5r"]
-[ext_resource type="PackedScene" uid="uid://b5k1rs1kks017" path="res://map/location/cave/cave.tscn" id="5_gw5x3"]
 [ext_resource type="PackedScene" uid="uid://crtks2lenqgk5" path="res://character/player_character/alchemist/alchemist.tscn" id="6_112ik"]
-[ext_resource type="PackedScene" uid="uid://djqosw16ihkrx" path="res://map/location/fountain/fountain.tscn" id="6_wwcqt"]
 [ext_resource type="PackedScene" uid="uid://21njw0pq8biw" path="res://character/player_character/monk/monk.tscn" id="7_i5grx"]
-[ext_resource type="PackedScene" uid="uid://r4vnq77p5ebp" path="res://map/location/grass/grass.tscn" id="7_ofiht"]
 [ext_resource type="PackedScene" uid="uid://bt10wa310i4sx" path="res://map/location/hill/hill.tscn" id="8_05mli"]
 [ext_resource type="PackedScene" uid="uid://cko6dr3rhic4k" path="res://map/location/inn/inn.tscn" id="9_de6fw"]
 [ext_resource type="PackedScene" uid="uid://dxcv3vhw0j3ot" path="res://map/location/lake/lake.tscn" id="10_kb5w5"]
-[ext_resource type="PackedScene" uid="uid://bgvsbpqabw2oj" path="res://map/location/library/library.tscn" id="11_rqrn2"]
-[ext_resource type="PackedScene" uid="uid://deqlu2tnogpgn" path="res://map/location/obelisk/obelisk.tscn" id="12_7ho10"]
-[ext_resource type="PackedScene" uid="uid://bpgffaxljllm6" path="res://map/location/ruins/ruins.tscn" id="13_xq7gd"]
-[ext_resource type="PackedScene" uid="uid://ciyrukncowfip" path="res://map/location/swamp/swamp.tscn" id="14_3akue"]
-[ext_resource type="PackedScene" uid="uid://dopyxp6x7wlht" path="res://map/location/temple/temple.tscn" id="15_ta71l"]
 [ext_resource type="PackedScene" uid="uid://byied770bhhqw" path="res://map/location/watchtower/watchtower.tscn" id="16_pi7e5"]
-[ext_resource type="PackedScene" uid="uid://c8w6pmir662x2" path="res://map/location/forest/forest.tscn" id="17_81obp"]
 [ext_resource type="PackedScene" uid="uid://b057kb2aexl5y" path="res://game/ui/camera/camera.tscn" id="23_iqbtl"]
 [ext_resource type="PackedScene" uid="uid://celmqvmenig08" path="res://temp/my_beautiful_ui/my_beautiful_ui.tscn" id="24_81obp"]
 
 [node name="Map" type="Node2D" unique_id=248879549]
 script = ExtResource("1_hgrid")
+max_turns = 9999999999
+bandit_count = 0
+bandit_add_interval = 99999999999
+character_count = 1
 characters = Array[PackedScene]([ExtResource("3_5jdw0"), ExtResource("4_kxmgb"), ExtResource("5_e8e5r"), ExtResource("6_112ik"), ExtResource("7_i5grx")])
 locations_distribution = Dictionary[PackedScene, int]({
 ExtResource("3_iqbtl"): 10,
-ExtResource("4_81obp"): 10,
-ExtResource("5_gw5x3"): 10,
-ExtResource("17_81obp"): 10,
-ExtResource("6_wwcqt"): 10,
-ExtResource("7_ofiht"): 10,
 ExtResource("8_05mli"): 10,
 ExtResource("9_de6fw"): 10,
 ExtResource("10_kb5w5"): 10,
-ExtResource("11_rqrn2"): 10,
-ExtResource("12_7ho10"): 10,
-ExtResource("13_xq7gd"): 10,
-ExtResource("14_3akue"): 10,
-ExtResource("15_ta71l"): 10,
 ExtResource("16_pi7e5"): 10
 })
 

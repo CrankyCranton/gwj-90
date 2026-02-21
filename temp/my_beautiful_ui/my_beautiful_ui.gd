@@ -56,10 +56,14 @@ func _on_bus_bandits_changed() -> void:
 
 @warning_ignore("shadowed_variable")
 func _on_bus_total_score_changed(score: int) -> void:
-	self.score.text = "Score: " + str(score) + "/" + str(target_score)
+	self.score.text = "Score: " + str(score)# + "/" + str(target_score)
 
 
 func _on_bus_turns_left_changed(turns: int) -> void:
 	turns_left.text = "Turns Left: " + str(turns)
 	if turns <= 0:
 		get_tree().paused = true
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()

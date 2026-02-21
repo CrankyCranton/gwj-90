@@ -15,6 +15,7 @@ text = "Score: 0"
 
 [node name="TurnsLeft" type="Label" parent="." unique_id=1104125669]
 unique_name_in_owner = true
+visible = false
 offset_top = 112.0
 offset_right = 173.0
 offset_bottom = 157.0
@@ -31,3 +32,18 @@ offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Bandits: "
+
+[node name="RestartButton" type="Button" parent="." unique_id=304178806]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
