@@ -2,32 +2,82 @@
 
 [ext_resource type="Script" uid="uid://cc3yx1l3ho0uu" path="res://temp/my_beautiful_ui/my_beautiful_ui.gd" id="1_snfv8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcx4b"]
+bg_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
+draw_center = false
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0x4ty"]
+bg_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+border_blend = true
+corner_detail = 1
+shadow_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+shadow_size = 15
+
 [node name="MyBeautifulUI" type="CanvasLayer" unique_id=1200815204]
 script = ExtResource("1_snfv8")
 
-[node name="Score" type="Label" parent="." unique_id=665638552]
-unique_name_in_owner = true
-offset_top = 64.0
-offset_right = 52.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 32
-text = "Score: 0"
+[node name="Panel" type="Panel" parent="." unique_id=1114088441]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xcx4b")
 
-[node name="TurnsLeft" type="Label" parent="." unique_id=1104125669]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=213885298]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1559455768]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0x4ty")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=539381252]
+offset_left = 69.0
+offset_top = 74.0
+offset_right = 109.0
+offset_bottom = 114.0
+mouse_filter = 2
+
+[node name="Bandits" type="Label" parent="VBoxContainer" unique_id=1050554554]
 unique_name_in_owner = true
-offset_top = 112.0
-offset_right = 173.0
-offset_bottom = 157.0
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bandits: "
+
+[node name="TurnsLeft" type="Label" parent="VBoxContainer" unique_id=1104125669]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Turns Left: "
 
-[node name="Bandits" type="Label" parent="." unique_id=1050554554]
+[node name="Score" type="Label" parent="VBoxContainer" unique_id=665638552]
 unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -134.0
-offset_bottom = 45.0
-grow_horizontal = 0
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Bandits: "
+text = "Score: 0"

@@ -10,6 +10,26 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey1jl"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty0j8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.40443814, 0.27395758, 0.21209751, 0.6)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
 [resource]
 Button/colors/font_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_ty0j8")
@@ -18,3 +38,4 @@ Button/styles/hover = SubResource("StyleBoxEmpty_71rqx")
 Button/styles/normal = SubResource("StyleBoxEmpty_lut35")
 Button/styles/pressed = SubResource("StyleBoxEmpty_ey1jl")
 Label/colors/font_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_ty0j8")
