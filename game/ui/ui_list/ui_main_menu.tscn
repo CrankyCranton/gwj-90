@@ -221,38 +221,42 @@ libraries/ = SubResource("AnimationLibrary_1ls3u")
 
 [node name="Start" type="Button" parent="." index="3" unique_id=433037554]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 841.0
 offset_top = 412.0
-offset_right = 1079.0
-offset_bottom = 538.0
+offset_right = -841.0
+offset_bottom = -542.0
 theme_override_font_sizes/font_size = 100
 disabled = true
 text = "START"
 
 [node name="Rules" type="Button" parent="." index="4" unique_id=1421699694]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 841.0
 offset_top = 542.0
-offset_right = 1079.0
-offset_bottom = 668.0
+offset_right = -841.0
+offset_bottom = -412.0
 theme_override_font_sizes/font_size = 100
 disabled = true
 text = "RULES"
 
 [node name="RulesRoot" type="Control" parent="." index="5" unique_id=1215924793]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 940.0
+offset_top = 520.0
+offset_right = -940.0
+offset_bottom = -520.0
 grow_horizontal = 2
 grow_vertical = 2
 
