@@ -7,6 +7,7 @@
 TooltipLabel/font_sizes/font_size = 32
 
 [node name="Bandit" type="TextureRect" unique_id=357962153 groups=["bandits"]]
+modulate = Color(0, 1, 0, 1)
 offset_right = 136.0
 offset_bottom = 136.0
 scale = Vector2(0.2, 0.2)

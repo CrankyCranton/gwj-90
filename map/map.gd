@@ -22,7 +22,7 @@ var score := 0:
 		Bus.total_score_changed.emit(score)
 		if score >= location_count:
 			Bus.won.emit()
-			print("won")
+			get_tree().change_scene_to_file("res://win_screen.tscn")
 var location_count: int:
 	set(_value):
 		pass
@@ -41,7 +41,7 @@ var location_count: int:
 
 		if turns_left <= 0 and score < location_count:
 			Bus.lost.emit()
-			print("lost")
+			get_tree().change_scene_to_file("res://lose_screen.tscn")
 
 
 func _ready() -> void:
@@ -146,6 +146,8 @@ func _on_character_path_scored(_character: Character, path_score: int) -> void:
 func _on_character_moved(_character: PlayerCharacter) -> void:
 	turns_left -= 1
 	# I'm probably using these filter and lambda functions way too much
+	if not get_tree():
+		return
 	var bandits := get_tree().get_nodes_in_group(&"bandits").filter(
 			func(bandit: Bandit) -> bool: return not (bandit.just_added or bandit.is_queued_for_deletion()))
 	if bandits.size() > 0:

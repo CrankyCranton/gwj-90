@@ -61,5 +61,5 @@ func _on_bus_total_score_changed(score: int) -> void:
 
 func _on_bus_turns_left_changed(turns: int) -> void:
 	turns_left.text = "Turns Left: " + str(turns)
-	if turns <= 0:
-		get_tree().paused = true
+	#if turns <= 0:
+		#get_tree().paused = true
