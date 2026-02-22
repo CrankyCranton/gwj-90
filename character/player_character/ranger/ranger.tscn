@@ -9,3 +9,4 @@ tooltip_text = "Ranger
 +1 view range."
 script = ExtResource("2_x2gfs")
 view_bonus = 1
+path_color = Color(0.46728477, 0, 1, 1)

@@ -8,3 +8,4 @@ modulate = Color(1, 0, 0, 1)
 tooltip_text = "Alchemist
 Upon path completion, teleport to a random open Inn, if available."
 script = ExtResource("2_6rsex")
+path_color = Color(0.7794055, 0.025040576, 0.15448877, 1)

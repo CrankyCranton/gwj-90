@@ -2,16 +2,345 @@
 
 [ext_resource type="PackedScene" uid="uid://bgg0m2vfmys0r" path="res://game/ui/class_ui_layer.tscn" id="1_1sq4u"]
 [ext_resource type="Script" uid="uid://b4ld24o2cgj2u" path="res://game/ui/ui_list/ui_main_menu.gd" id="2_aekqq"]
+[ext_resource type="Texture2D" uid="uid://hcm8iubp5lbp" path="res://assets/ui/slides/RULEBOOK_PG_01.png" id="3_kfoo5"]
+
+[sub_resource type="Gradient" id="Gradient_aekqq"]
+offsets = PackedFloat32Array(0, 0.3882353)
+colors = PackedColorArray(0.85105014, 0.8198382, 0.72135246, 0, 0.8509804, 0.81960785, 0.72156864, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kfoo5"]
+gradient = SubResource("Gradient_aekqq")
+
+[sub_resource type="Animation" id="Animation_d6kru"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-694, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Start:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rules:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rules:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Start:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ladfv"]
+resource_name = "intro_01_title_in"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-694, 53), Vector2(1434, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Start:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rules:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rules:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Start:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ls3u"]
+_data = {
+&"RESET": SubResource("Animation_d6kru"),
+&"intro_01_title_in": SubResource("Animation_ladfv")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6kru"]
+bg_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 25
+shadow_offset = Vector2(12, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfoo5"]
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ladfv"]
+draw_center = false
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [node name="MainMenu" unique_id=1575267630 instance=ExtResource("1_1sq4u")]
-modulate = Color(1, 1, 1, 0)
 script = ExtResource("2_aekqq")
 
-[node name="ColorRect" type="ColorRect" parent="." index="0" unique_id=1535590124]
+[node name="Title" type="Label" parent="." index="0" unique_id=1488614918]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -423.0
+offset_top = -487.0
+offset_right = 423.0
+offset_bottom = -173.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.40392157, 0.27450982, 0.21176471, 1)
+theme_override_font_sizes/font_size = 248
+text = "Folk Trails"
+
+[node name="Fade" type="TextureRect" parent="." index="1" unique_id=1859917589]
+clip_children = 2
+custom_minimum_size = Vector2(846, 314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1654.0
+offset_top = -487.0
+offset_right = 497.0
+offset_bottom = -173.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_kfoo5")
+
+[node name="IntroAnims" type="AnimationPlayer" parent="." index="2" unique_id=448749944]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_1ls3u")
+
+[node name="Start" type="Button" parent="." index="3" unique_id=433037554]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 841.0
+offset_top = 412.0
+offset_right = 1079.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "START"
+
+[node name="Rules" type="Button" parent="." index="4" unique_id=1421699694]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 841.0
+offset_top = 542.0
+offset_right = 1079.0
+offset_bottom = 668.0
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "RULES"
+
+[node name="RulesRoot" type="Control" parent="." index="5" unique_id=1215924793]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Panel" parent="RulesRoot" index="0" unique_id=1166272755]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -670.9727
+offset_top = -448.0
+offset_right = 670.9727
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d6kru")
+
+[node name="Clip" type="Panel" parent="RulesRoot/Container" index="0" unique_id=1869333443]
+clip_children = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kfoo5")
+
+[node name="RulePage" type="TextureRect" parent="RulesRoot/Container/Clip" index="0" unique_id=1155017439]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("3_kfoo5")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="PreviousPage" type="Button" parent="RulesRoot/Container/Clip" index="1" unique_id=798704867]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.666656
+offset_top = -100.666626
+offset_right = 154.66666
+offset_bottom = -18.666626
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "PREV"
+
+[node name="NextPage" type="Button" parent="RulesRoot/Container/Clip" index="2" unique_id=797653152]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -186.66663
+offset_top = -100.666626
+offset_right = -30.666626
+offset_bottom = -18.666626
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "NEXT"
+
+[node name="Border" type="Panel" parent="RulesRoot/Container" index="1" unique_id=179195755]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ladfv")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Rules" to="." method="_on_rules_pressed"]
+[connection signal="pressed" from="RulesRoot/Container/Clip/PreviousPage" to="." method="_on_previous_page_pressed"]
+[connection signal="pressed" from="RulesRoot/Container/Clip/NextPage" to="." method="_on_next_page_pressed"]

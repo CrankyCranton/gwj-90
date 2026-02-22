@@ -8,3 +8,4 @@ self_modulate = Color(0, 0, 1, 1)
 tooltip_text = "Monk
 +2 to a location, if the same type has been visited before on this path."
 script = ExtResource("2_b7ox4")
+path_color = Color(0, 0, 0.94337994, 1)
