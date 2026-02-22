@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://2cw54hrfip75"]
 
 [ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_4hgbd"]
+[ext_resource type="Texture2D" uid="uid://bheyb3pl1l1ab" path="res://assets/merchant.webp" id="2_761yk"]
 [ext_resource type="Script" uid="uid://cl0bbskpxe8mk" path="res://character/player_character/merchant/merchant.gd" id="2_akss2"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffc3h"]
+atlas = ExtResource("2_761yk")
+region = Rect2(556, 182, 203, 377)
+
 [node name="Merchant" unique_id=618010067 instance=ExtResource("1_4hgbd")]
-self_modulate = Color(1, 1, 0, 1)
 tooltip_text = "Merchant
 +3 to every 5th location on a path."
+icon = SubResource("AtlasTexture_ffc3h")
 script = ExtResource("2_akss2")
 path_color = Color(0.74125385, 0.74125385, 0.29748532, 1)

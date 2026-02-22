@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="2_24pgi"]
 
 [sub_resource type="Theme" id="Theme_24pgi"]
-TooltipLabel/colors/font_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
 TooltipLabel/font_sizes/font_size = 32
 
 [node name="Location" type="Button" unique_id=1315330565 groups=["locations"]]

@@ -59,13 +59,12 @@ func move_and_trace(new_location: Location) -> void:
 
 
 func activate_and_score(new_location: Location) -> void:
+	var score := get_path_score(-1)
+	unfinished_path_score_changed.emit(self, score)
+	Bus.character_unfinished_path_score_changed.emit(self, score)
 	if new_location is Camp:
 		@warning_ignore("redundant_await")
 		await score_path()
-	else:
-		var score := get_path_score(-1)
-		unfinished_path_score_changed.emit(self, score)
-		Bus.character_unfinished_path_score_changed.emit(self, score)
 
 	@warning_ignore("redundant_await")
 	await location._activate()

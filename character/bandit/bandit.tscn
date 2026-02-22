@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://dqdpoedbw626t"]
 
-[ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_gmytg"]
+[ext_resource type="Texture2D" uid="uid://cq7knplxmj8ep" path="res://assets/reaper.webp" id="1_gun8i"]
 [ext_resource type="Script" uid="uid://djjtfcu5weasg" path="res://character/bandit/bandit.gd" id="2_gun8i"]
 
 [sub_resource type="Theme" id="Theme_gun8i"]
 TooltipLabel/font_sizes/font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s04ij"]
+atlas = ExtResource("1_gun8i")
+region = Rect2(579, 125, 161, 522)
 
 [node name="Bandit" type="TextureRect" unique_id=357962153 groups=["bandits"]]
 offset_right = 136.0
@@ -13,6 +17,6 @@ scale = Vector2(0.3, 0.3)
 tooltip_text = "Trail-Reaper
 When they move onto an incomplete path, the path is aborted."
 theme = SubResource("Theme_gun8i")
-texture = ExtResource("1_gmytg")
+texture = SubResource("AtlasTexture_s04ij")
 script = ExtResource("2_gun8i")
 can_walk_on_path = true
