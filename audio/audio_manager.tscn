@@ -33,27 +33,22 @@ script = ExtResource("2_vxw8f")
 [node name="snd_alchemist" type="AudioStreamPlayer2D" parent="Character" unique_id=341878104]
 stream = ExtResource("3_6wlj3")
 volume_db = 4.0
-bus = &"SFX"
 
 [node name="snd_fighter" type="AudioStreamPlayer2D" parent="Character" unique_id=1978406485]
 stream = ExtResource("4_0xv67")
 volume_db = -4.0
-bus = &"SFX"
 
 [node name="snd_ranger" type="AudioStreamPlayer2D" parent="Character" unique_id=1366502100]
 stream = ExtResource("5_oyqdx")
 volume_db = -19.122
-bus = &"SFX"
 
 [node name="snd_monk" type="AudioStreamPlayer2D" parent="Character" unique_id=2006171244]
 stream = ExtResource("6_tmngx")
 volume_db = -16.0
-bus = &"SFX"
 
 [node name="snd_merchant" type="AudioStreamPlayer2D" parent="Character" unique_id=2074143142]
 stream = ExtResource("7_h3g62")
 volume_db = -4.0
-bus = &"SFX"
 
 [node name="Environment" type="Node" parent="." unique_id=1108795655]
 script = ExtResource("2_0i2i4")
@@ -92,7 +87,6 @@ script = ExtResource("2_0i2i4")
 
 [node name="snd_win" type="AudioStreamPlayer2D" parent="Event" unique_id=17921598]
 stream = ExtResource("10_gnfy0")
-bus = &"SFX"
 
 [node name="snd_lose" type="AudioStreamPlayer2D" parent="Event" unique_id=833070028]
 stream = ExtResource("10_gnfy0")
@@ -108,12 +102,10 @@ script = ExtResource("2_drlug")
 [node name="mus_pad" type="AudioStreamPlayer2D" parent="Music" unique_id=1267179543]
 stream = ExtResource("10_0xv67")
 volume_db = 11.0
-bus = &"Music"
 
 [node name="mus_map" type="AudioStreamPlayer2D" parent="Music" unique_id=777137565]
 stream = ExtResource("11_oyqdx")
 volume_db = -8.432
-bus = &"Music"
 
 [node name="character_themes" type="Node" parent="Music" unique_id=1416620292]
 

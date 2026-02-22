@@ -10,6 +10,8 @@ TooltipLabel/font_sizes/font_size = 32
 offset_right = 136.0
 offset_bottom = 136.0
 scale = Vector2(0.3, 0.3)
+tooltip_text = "Trail-Reaper
+When they move onto an incomplete path, the path is aborted."
 theme = SubResource("Theme_gun8i")
 texture = ExtResource("1_gmytg")
 script = ExtResource("2_gun8i")

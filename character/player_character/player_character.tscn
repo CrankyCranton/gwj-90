@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cnh4gtf2te6l4" path="res://character/player_character/player_character.gd" id="2_pflqk"]
 
 [sub_resource type="Theme" id="Theme_jc8if"]
+TooltipLabel/colors/font_color = Color(0.8509804, 0.81960785, 0.72156864, 1)
 TooltipLabel/font_sizes/font_size = 32
 
 [node name="PlayerCharacter" type="Button" unique_id=1841612984 groups=["player_characters"]]

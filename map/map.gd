@@ -16,11 +16,16 @@ class_name Map extends Node2D
 @export var locations_distribution: Dictionary[PackedScene, int] = {}
 
 var map_rect := Rect2i()
+var char_scores: Dictionary[Character, int] = {}
 var score := 0:
 	set(value):
 		score = value
 		Bus.total_score_changed.emit(score)
-		if score >= location_count:
+		var unfinish_score := 0
+		@warning_ignore("shadowed_global_identifier")
+		for char in char_scores.values():
+			unfinish_score += char
+		if score + unfinish_score >= location_count:
 			Bus.won.emit()
 var location_count: int:
 	set(_value):
@@ -37,11 +42,16 @@ var location_count: int:
 	set(value):
 		turns_left = value
 		Bus.turns_left_changed.emit(turns_left)
-		if turns_left <= 0:
-			Bus.ended.emit(score)
+		var unfinish_score := 0
+		@warning_ignore("shadowed_global_identifier")
+		for char in char_scores.values():
+			unfinish_score += char
+		if turns_left <= 0 and score + unfinish_score < location_count:
+			Bus.lost.emit()
 
 
 func _ready() -> void:
+	Bus.character_unfinished_path_score_changed.connect(_on_character_unfinished_path_score_changed)
 	Bus.add_bandit.connect(add_bandit)
 	generate_locations()
 	generate_connections()
@@ -51,6 +61,11 @@ func _ready() -> void:
 	init_camera()
 	turns_left = turns_left # Call setter
 	Bus.target_score_set.emit(location_count)
+
+
+func _on_character_unfinished_path_score_changed(character: Character, path_score: int) -> void:
+	char_scores[character] = path_score
+	score = score
 
 
 func init_camera() -> void:
