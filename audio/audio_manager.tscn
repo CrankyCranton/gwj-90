@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://o1rogdahgl5p"]
+
+[ext_resource type="Script" uid="uid://fqdiqhe3245p" path="res://audio/audio_manager.gd" id="1_5jhky"]
+[ext_resource type="Script" uid="uid://bhc8dyc6vx16s" path="res://audio/scripts/environment.gd" id="2_0i2i4"]
+[ext_resource type="Script" uid="uid://dye1ppe540nqt" path="res://audio/scripts/music.gd" id="2_drlug"]
+[ext_resource type="AudioStream" uid="uid://ladbfpbjhnrm" path="res://audio/sfx/Click (1).wav" id="2_oyqdx"]
+[ext_resource type="Script" uid="uid://be2cv4fdjechf" path="res://audio/character.gd" id="2_vxw8f"]
+[ext_resource type="AudioStream" uid="uid://dom15c4mqmuug" path="res://audio/sfx/Alchemist (1).wav" id="3_6wlj3"]
+[ext_resource type="AudioStream" uid="uid://dws8n3vbsu3su" path="res://audio/sfx/Fighter (1).wav" id="4_0xv67"]
+[ext_resource type="AudioStream" uid="uid://1me05stdf7kg" path="res://audio/sfx/Ranger (1).wav" id="5_oyqdx"]
+[ext_resource type="AudioStream" uid="uid://duoj5q5tm8l3u" path="res://audio/sfx/Monk (1).wav" id="6_tmngx"]
+[ext_resource type="AudioStream" uid="uid://d31idrktbgehu" path="res://audio/sfx/Merchant (1).wav" id="7_h3g62"]
+[ext_resource type="AudioStream" uid="uid://dkbf0qbgvicbx" path="res://audio/bgm/Pad.ogg" id="10_0xv67"]
+[ext_resource type="AudioStream" uid="uid://dastekm7pwoqy" path="res://audio/sfx/Game over.wav" id="10_gnfy0"]
+[ext_resource type="AudioStream" uid="uid://b0ve2mwegwojn" path="res://audio/sfx/score.wav" id="11_gnfy0"]
+[ext_resource type="AudioStream" uid="uid://bklprx0ud1rho" path="res://audio/bgm/Map.ogg" id="11_oyqdx"]
+
+[node name="AudioManager" type="Node2D" unique_id=1366782532]
+script = ExtResource("1_5jhky")
+
+[node name="UI" type="Node" parent="." unique_id=1268172824]
+
+[node name="snd_button_click" type="AudioStreamPlayer2D" parent="UI" unique_id=119984876]
+stream = ExtResource("2_oyqdx")
+
+[node name="Object" type="Node" parent="." unique_id=156194462]
+
+[node name="snd_bandit" type="AudioStreamPlayer2D" parent="Object" unique_id=753388232]
+
+[node name="Character" type="Node" parent="." unique_id=491325571]
+script = ExtResource("2_vxw8f")
+
+[node name="snd_alchemist" type="AudioStreamPlayer2D" parent="Character" unique_id=341878104]
+stream = ExtResource("3_6wlj3")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="snd_fighter" type="AudioStreamPlayer2D" parent="Character" unique_id=1978406485]
+stream = ExtResource("4_0xv67")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="snd_ranger" type="AudioStreamPlayer2D" parent="Character" unique_id=1366502100]
+stream = ExtResource("5_oyqdx")
+volume_db = -19.122
+bus = &"SFX"
+
+[node name="snd_monk" type="AudioStreamPlayer2D" parent="Character" unique_id=2006171244]
+stream = ExtResource("6_tmngx")
+volume_db = -16.0
+bus = &"SFX"
+
+[node name="snd_merchant" type="AudioStreamPlayer2D" parent="Character" unique_id=2074143142]
+stream = ExtResource("7_h3g62")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="Environment" type="Node" parent="." unique_id=1108795655]
+script = ExtResource("2_0i2i4")
+
+[node name="snd_grass" type="AudioStreamPlayer2D" parent="Environment" unique_id=326977744]
+
+[node name="snd_forest" type="AudioStreamPlayer2D" parent="Environment" unique_id=482839995]
+
+[node name="snd_lake" type="AudioStreamPlayer2D" parent="Environment" unique_id=1024622675]
+
+[node name="snd_hill" type="AudioStreamPlayer2D" parent="Environment" unique_id=1025078337]
+
+[node name="snd_swamp" type="AudioStreamPlayer2D" parent="Environment" unique_id=259266394]
+
+[node name="snd_cave" type="AudioStreamPlayer2D" parent="Environment" unique_id=439477132]
+
+[node name="snd_inn" type="AudioStreamPlayer2D" parent="Environment" unique_id=1094214432]
+
+[node name="snd_camp" type="AudioStreamPlayer2D" parent="Environment" unique_id=186789465]
+
+[node name="snd_watchtower" type="AudioStreamPlayer2D" parent="Environment" unique_id=1251792973]
+
+[node name="snd_fountain" type="AudioStreamPlayer2D" parent="Environment" unique_id=2088607455]
+
+[node name="snd_obelisk" type="AudioStreamPlayer2D" parent="Environment" unique_id=928237185]
+
+[node name="snd_temple" type="AudioStreamPlayer2D" parent="Environment" unique_id=900280341]
+
+[node name="snd_ruins" type="AudioStreamPlayer2D" parent="Environment" unique_id=2084100326]
+
+[node name="snd_castle" type="AudioStreamPlayer2D" parent="Environment" unique_id=2014772575]
+
+[node name="snd_library" type="AudioStreamPlayer2D" parent="Environment" unique_id=1037377494]
+
+[node name="Event" type="Node" parent="." unique_id=2075896282]
+
+[node name="snd_win" type="AudioStreamPlayer2D" parent="Event" unique_id=17921598]
+stream = ExtResource("10_gnfy0")
+bus = &"SFX"
+
+[node name="snd_lose" type="AudioStreamPlayer2D" parent="Event" unique_id=833070028]
+stream = ExtResource("10_gnfy0")
+
+[node name="snd_abort_path" type="AudioStreamPlayer2D" parent="Event" unique_id=2126035145]
+
+[node name="snd_finish_path" type="AudioStreamPlayer2D" parent="Event" unique_id=2021335247]
+stream = ExtResource("11_gnfy0")
+
+[node name="Music" type="Node" parent="." unique_id=61046632]
+script = ExtResource("2_drlug")
+
+[node name="mus_pad" type="AudioStreamPlayer2D" parent="Music" unique_id=1267179543]
+stream = ExtResource("10_0xv67")
+volume_db = 11.0
+bus = &"Music"
+
+[node name="mus_map" type="AudioStreamPlayer2D" parent="Music" unique_id=777137565]
+stream = ExtResource("11_oyqdx")
+volume_db = -8.432
+bus = &"Music"
+
+[node name="character_themes" type="Node" parent="Music" unique_id=1416620292]
+
+[node name="mus_fighter" type="AudioStreamPlayer" parent="Music/character_themes" unique_id=1103774591]
+
+[node name="mus_merchant" type="AudioStreamPlayer" parent="Music/character_themes" unique_id=93353724]
+
+[node name="mus_ranger" type="AudioStreamPlayer" parent="Music/character_themes" unique_id=675400337]
+
+[node name="mus_alchemist" type="AudioStreamPlayer" parent="Music/character_themes" unique_id=406433476]
+
+[node name="mus_monk" type="AudioStreamPlayer" parent="Music/character_themes" unique_id=171073893]

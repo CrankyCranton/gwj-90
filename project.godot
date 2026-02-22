@@ -21,6 +21,7 @@ Bus="*uid://3wuvbpnot46t"
 Instance="*uid://bwmybknkmp816"
 UI="*uid://eehkengtluom"
 CardsManager="*uid://vlkidwjxh1f4"
+AudioManager="*uid://o1rogdahgl5p"
 
 [debug]
 

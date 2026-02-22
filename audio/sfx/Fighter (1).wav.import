@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dws8n3vbsu3su"
+path="res://.godot/imported/Fighter (1).wav-466eccfeaea99b13a2d5ac1267b29d87.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Fighter (1).wav"
+dest_files=["res://.godot/imported/Fighter (1).wav-466eccfeaea99b13a2d5ac1267b29d87.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

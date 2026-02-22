@@ -1,0 +1,57 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://u68y0smrhc4b"]
+
+[sub_resource type="AudioEffectEQ21" id="AudioEffectEQ21_l5q6b"]
+resource_name = "EQ21"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_ioh5l"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_l5q6b"]
+resource_name = "HardLimiter"
+ceiling_db = -4.0
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_l5q6b"]
+resource_name = "EQ"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+sidechain = &"SFX"
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_ioh5l"]
+resource_name = "StereoEnhance"
+
+[sub_resource type="AudioEffectHighShelfFilter" id="AudioEffectHighShelfFilter_l5q6b"]
+resource_name = "HighShelfFilter"
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_l5q6b"]
+resource_name = "StereoEnhance"
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectEQ21_l5q6b")
+bus/0/effect/0/enabled = false
+bus/0/effect/1/effect = SubResource("AudioEffectCompressor_ioh5l")
+bus/0/effect/1/enabled = false
+bus/0/effect/2/effect = SubResource("AudioEffectHardLimiter_l5q6b")
+bus/0/effect/2/enabled = true
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectEQ_l5q6b")
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectStereoEnhance_ioh5l")
+bus/1/effect/2/enabled = false
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectHighShelfFilter_l5q6b")
+bus/2/effect/0/enabled = false
+bus/2/effect/1/effect = SubResource("AudioEffectStereoEnhance_l5q6b")
+bus/2/effect/1/enabled = false
