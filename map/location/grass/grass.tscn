@@ -2,14 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_oh35f"]
 [ext_resource type="Script" uid="uid://daannk7tv2yw6" path="res://map/location/grass/grass.gd" id="2_cvou7"]
-[ext_resource type="Texture2D" uid="uid://bq2g0mrx84xji" path="res://assets/grassland_1.webp" id="2_hgkyx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l3cj3"]
-atlas = ExtResource("2_hgkyx")
-region = Rect2(498, 253, 379, 243)
+[ext_resource type="Texture2D" uid="uid://chbgo3b0iscor" path="res://assets/grass.webp" id="2_hgkyx"]
 
 [node name="Grass" unique_id=290503295 instance=ExtResource("1_oh35f")]
 tooltip_text = "+1 for each location after this on this path."
-icon = SubResource("AtlasTexture_l3cj3")
+icon = ExtResource("2_hgkyx")
 script = ExtResource("2_cvou7")
 points = 0

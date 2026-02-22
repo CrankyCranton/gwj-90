@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ciyrukncowfip"]
 
 [ext_resource type="PackedScene" uid="uid://181qapuerrpv" path="res://map/location/location.tscn" id="1_brtnp"]
-[ext_resource type="Texture2D" uid="uid://do5g0ehq0etyc" path="res://temp/PNG/Tiles/Terrain/Dirt/dirt_07.png" id="2_gufhr"]
+[ext_resource type="Texture2D" uid="uid://b82xtavkuq7h6" path="res://assets/swamp.webp" id="2_gufhr"]
 [ext_resource type="Script" uid="uid://ig032a0qpxpl" path="res://map/location/swamp/swamp.gd" id="2_uhm5n"]
 
 [node name="Swamp" unique_id=290503295 instance=ExtResource("1_brtnp")]

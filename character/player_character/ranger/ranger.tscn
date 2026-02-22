@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://beyeceda17j7b"]
 
 [ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_3jjff"]
+[ext_resource type="Texture2D" uid="uid://diwfblsmu8kno" path="res://assets/elf-helmet.webp" id="2_4h2py"]
 [ext_resource type="Script" uid="uid://bwkqeat5fn4un" path="res://character/player_character/ranger/ranger.gd" id="2_x2gfs"]
 
 [node name="Ranger" unique_id=618010067 instance=ExtResource("1_3jjff")]
 self_modulate = Color(1, 0, 1, 1)
 tooltip_text = "Ranger
 +1 view range."
+icon = ExtResource("2_4h2py")
 script = ExtResource("2_x2gfs")
 view_bonus = 1
 path_color = Color(0.46728477, 0, 1, 1)

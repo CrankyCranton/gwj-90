@@ -2,10 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://c2p02ilt5sek2" path="res://character/player_character/player_character.tscn" id="1_0epk3"]
 [ext_resource type="Script" uid="uid://cktb7el0pvy88" path="res://character/player_character/alchemist/alchemist.gd" id="2_6rsex"]
+[ext_resource type="Texture2D" uid="uid://ddbi4lb2fcqos" path="res://assets/wizard-face.webp" id="2_bqhmn"]
 
 [node name="Alchemist" unique_id=618010067 instance=ExtResource("1_0epk3")]
 modulate = Color(1, 0, 0, 1)
 tooltip_text = "Alchemist
 Upon path completion, teleport to a random open Inn, if available."
+icon = ExtResource("2_bqhmn")
 script = ExtResource("2_6rsex")
 path_color = Color(0.7794055, 0.025040576, 0.15448877, 1)
