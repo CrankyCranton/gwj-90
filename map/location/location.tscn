@@ -21,7 +21,9 @@ script = ExtResource("1_ds6n1")
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_font_sizes/font_size = 48
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.7529412)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 64
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
