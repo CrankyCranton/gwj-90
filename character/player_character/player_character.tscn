@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ciya0umqt4ugh" path="res://icon.svg" id="1_jc8if"]
 [ext_resource type="Script" uid="uid://cnh4gtf2te6l4" path="res://character/player_character/player_character.gd" id="2_pflqk"]
+[ext_resource type="Script" uid="uid://cdffqo2wgf33x" path="res://audio/scripts/button_click_emitter.gd" id="3_o1e05"]
 
 [sub_resource type="Theme" id="Theme_jc8if"]
 TooltipLabel/font_sizes/font_size = 32
@@ -15,6 +16,10 @@ theme = SubResource("Theme_jc8if")
 icon = ExtResource("1_jc8if")
 script = ExtResource("2_pflqk")
 can_walk_on_enemies = true
+
+[node name="ButtonClickEmitter" type="Node" parent="." unique_id=570996814]
+script = ExtResource("3_o1e05")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

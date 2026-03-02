@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gq3aittq5nhv"]
 
 [ext_resource type="Script" uid="uid://cpimclckdape" path="res://win_screen.gd" id="1_cbtnu"]
+[ext_resource type="Script" uid="uid://cdffqo2wgf33x" path="res://audio/scripts/button_click_emitter.gd" id="2_h3ym8"]
 
 [node name="WinScreen" type="Control" unique_id=2122746397]
 layout_mode = 3
@@ -38,5 +39,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Play Again"
+
+[node name="ButtonClickEmitter" type="Node" parent="Button" unique_id=1244281371]
+script = ExtResource("2_h3ym8")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

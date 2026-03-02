@@ -97,6 +97,7 @@ func _on_bus_set_location_enabled(location: Location, enabled: bool) -> void:
 
 
 func _on_focus_entered() -> void:
+	pressed.emit()
 	Bus.location_selected.emit(self)
 
 

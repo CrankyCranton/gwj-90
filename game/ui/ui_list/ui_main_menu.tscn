@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bgg0m2vfmys0r" path="res://game/ui/class_ui_layer.tscn" id="1_1sq4u"]
 [ext_resource type="Script" uid="uid://b4ld24o2cgj2u" path="res://game/ui/ui_list/ui_main_menu.gd" id="2_aekqq"]
+[ext_resource type="Script" uid="uid://cdffqo2wgf33x" path="res://audio/scripts/button_click_emitter.gd" id="3_d6kru"]
 [ext_resource type="Texture2D" uid="uid://hcm8iubp5lbp" path="res://assets/ui/slides/RULEBOOK_PG_01.png" id="3_kfoo5"]
 
 [sub_resource type="Gradient" id="Gradient_aekqq"]
@@ -229,9 +230,15 @@ offset_left = 841.0
 offset_top = 412.0
 offset_right = -841.0
 offset_bottom = -542.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 disabled = true
 text = "START"
+
+[node name="ButtonClickEmitter" type="Node" parent="Start" index="0" unique_id=1869093269]
+script = ExtResource("3_d6kru")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
 
 [node name="Rules" type="Button" parent="." index="4" unique_id=1421699694]
 modulate = Color(1, 1, 1, 0)
@@ -243,14 +250,21 @@ offset_left = 841.0
 offset_top = 542.0
 offset_right = -841.0
 offset_bottom = -412.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 disabled = true
 text = "RULES"
+
+[node name="ButtonClickEmitter" type="Node" parent="Rules" index="0" unique_id=2129429578]
+script = ExtResource("3_d6kru")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
 
 [node name="RulesRoot" type="Control" parent="." index="5" unique_id=1215924793]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 940.0
@@ -316,6 +330,10 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "PREV"
 
+[node name="ButtonClickEmitter2" type="Node" parent="RulesRoot/Container/Clip/PreviousPage" index="0" unique_id=1471433629]
+script = ExtResource("3_d6kru")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
+
 [node name="NextPage" type="Button" parent="RulesRoot/Container/Clip" index="2" unique_id=797653152]
 unique_name_in_owner = true
 z_index = 1
@@ -333,6 +351,10 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "NEXT"
+
+[node name="ButtonClickEmitter3" type="Node" parent="RulesRoot/Container/Clip/NextPage" index="0" unique_id=891444175]
+script = ExtResource("3_d6kru")
+metadata/_custom_type_script = "uid://cdffqo2wgf33x"
 
 [node name="Border" type="Panel" parent="RulesRoot/Container" index="1" unique_id=179195755]
 layout_mode = 1
