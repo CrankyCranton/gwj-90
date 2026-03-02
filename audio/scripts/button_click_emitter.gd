@@ -6,5 +6,5 @@ class_name ButtonClickEmitter extends Node
 func _ready() -> void:
 	assert(get_parent() is BaseButton, "Must be a child of a button.")
 	var parent := get_parent() as BaseButton
-	parent.mouse_entered.connect(Bus.button_hovered.emit.bind(self))
-	parent.pressed.connect(Bus.button_clicked.emit.bind(self))
+	parent.mouse_entered.connect(Bus.button_hovered.emit.bind(parent))
+	parent.pressed.connect(Bus.button_clicked.emit.bind(parent))

@@ -22,6 +22,8 @@ signal location_selected(location: Location)
 signal location_deselected(location: Location)
 # By default, all locations are disabled.
 signal set_location_enabled(location: Location, enabled: bool)
+signal button_clicked(button: BaseButton)
+signal button_hovered(button: BaseButton)
 
 signal path_scored(character: PlayerCharacter, path_score: int)
 signal character_unfinished_path_score_changed(character: Character, path_score: int)
