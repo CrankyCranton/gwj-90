@@ -63,3 +63,11 @@ func _on_bus_turns_left_changed(turns: int) -> void:
 	turns_left.text = "Turns Left: " + str(turns)
 	#if turns <= 0:
 		#get_tree().paused = true
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

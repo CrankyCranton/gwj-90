@@ -10,7 +10,7 @@ func themes():
 	$mus_map.play()
 	$mus_map.finished.connect(on_map_theme_finished)
 
-	
+
 func on_map_theme_finished():
 	$mus_pad.play()
 	$mus_pad.finished.connect(themes)

@@ -38,7 +38,7 @@ func _on_next_page_pressed() -> void:
 	if _current_page_index == _pages.size() - 1:
 		_close_rules()
 		return
-		
+
 	_current_page_index += 1
 	_update_ui()
 
@@ -50,10 +50,10 @@ func _on_previous_page_pressed() -> void:
 func _update_ui() -> void:
 	# Update the texture
 	rule_page.texture = _pages[_current_page_index]
-	
+
 	# Visibility of Previous Button (Hide on first page)
 	prev_button.visible = (_current_page_index > 0)
-	
+
 	# Handle Next Button vs Exit
 	if _current_page_index == _pages.size() - 1:
 		next_button.text = "EXIT"
