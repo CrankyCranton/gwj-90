@@ -45,6 +45,7 @@ var location_count: int:
 
 
 func _ready() -> void:
+	Bandit.bandits = 0
 	Bus.add_bandit.connect(add_bandit)
 	generate_locations()
 	generate_connections()
